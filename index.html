@@ -259,25 +259,81 @@
       border-radius: var(--radius);
       overflow: hidden;
       border: 1px solid var(--border);
-      position: relative;
-      aspect-ratio: 16 / 11;
+      background: var(--surface);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 30px;
       cursor: pointer;
       transition: transform 0.25s ease, border-color 0.25s;
     }
     .work-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
-    .work-card .content { position: relative; z-index: 2; }
-    .work-card .tag { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.7); margin-bottom: 8px; display: block; font-weight: 600; }
-    .work-card h3 { font-size: 1.5rem; color: #fff; }
-    .work-card .arrow { position: absolute; top: 26px; right: 26px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.14); backdrop-filter: blur(6px); display: grid; place-items: center; color: #fff; font-size: 1.1rem; transition: background 0.2s, transform 0.2s; }
-    .work-card:hover .arrow { background: #fff; color: #111; transform: rotate(-45deg); }
-    .w1 { background: linear-gradient(135deg, #7c5cff, #4a2fd6); }
-    .w2 { background: linear-gradient(135deg, #00e5c0, #0891b2); }
-    .w3 { background: linear-gradient(135deg, #ff5c8a, #b3245c); }
-    .w4 { background: linear-gradient(135deg, #ffb347, #ff5c8a); }
+    /* preview window */
+    .work-preview {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
+    .p1 { background: linear-gradient(135deg, #2a2350, #171426); }
+    .p2 { background: linear-gradient(135deg, #0e3b38, #10161f); }
+    .p3 { background: linear-gradient(135deg, #3a1730, #14101c); }
+    .p4 { background: linear-gradient(135deg, #3a2a12, #1a1424); }
+    .work-preview .mock { width: 100%; transition: transform 0.4s ease; }
+    .work-card:hover .work-preview .mock { transform: scale(1.03); }
+    /* meta row */
+    .work-meta { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; border-top: 1px solid var(--border); }
+    .work-meta .tag { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent-2); font-weight: 600; display: block; margin-bottom: 5px; }
+    .work-meta h3 { font-size: 1.2rem; color: var(--text); }
+    .work-meta .arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-strong); display: grid; place-items: center; color: var(--text-dim); font-size: 1rem; transition: all 0.2s; flex-shrink: 0; }
+    .work-card:hover .work-meta .arrow { background: var(--accent); border-color: var(--accent); color: #fff; transform: rotate(-45deg); }
+
+    /* --- browser mock (Nova) --- */
+    .browser { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4); background: #14121f; border: 1px solid rgba(255,255,255,0.08); }
+    .browser-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #1d1a2b; }
+    .browser-bar i { width: 9px; height: 9px; border-radius: 50%; display: block; }
+    .browser-bar .u { flex: 1; height: 12px; border-radius: 6px; background: rgba(255,255,255,0.08); margin-left: 8px; }
+    .browser-body { padding: 16px; }
+    .bb-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .bb-nav .brand { width: 46px; height: 8px; border-radius: 4px; background: var(--grad); }
+    .bb-nav .links { display: flex; gap: 8px; }
+    .bb-nav .links b { width: 20px; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.18); display: block; }
+    .bb-h1 { height: 13px; width: 78%; border-radius: 5px; background: rgba(255,255,255,0.9); margin-bottom: 8px; }
+    .bb-h2 { height: 13px; width: 54%; border-radius: 5px; background: var(--accent); margin-bottom: 14px; }
+    .bb-row { display: flex; gap: 10px; }
+    .bb-row .card { flex: 1; height: 42px; border-radius: 7px; background: rgba(255,255,255,0.07); }
+    .bb-row .card.accent { background: linear-gradient(135deg, rgba(124,92,255,0.5), rgba(0,229,192,0.35)); }
+
+    /* --- logo board (Verdant) --- */
+    .logo-board { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .logo-tile { aspect-ratio: 3/2; border-radius: 10px; background: #12100c; border: 1px solid rgba(255,255,255,0.07); display: grid; place-items: center; }
+    .logo-tile svg { width: 42%; height: 42%; }
+    .logo-tile.hero { grid-column: span 3; aspect-ratio: auto; padding: 16px 18px; display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #123f3a, #0c1512); }
+    .logo-tile.hero svg { width: 34px; height: 34px; }
+    .logo-tile.hero .wordmark { height: 12px; width: 96px; border-radius: 6px; background: rgba(255,255,255,0.85); }
+
+    /* --- dashboard (Pulse) --- */
+    .dash { width: 100%; display: flex; border-radius: 10px; overflow: hidden; background: #14101c; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 18px 36px rgba(0,0,0,0.4); }
+    .dash-side { width: 28%; background: #1b1526; padding: 14px 10px; display: flex; flex-direction: column; gap: 8px; }
+    .dash-side .logo-dot { width: 16px; height: 16px; border-radius: 5px; background: var(--accent-3); margin-bottom: 6px; }
+    .dash-side b { height: 7px; border-radius: 4px; background: rgba(255,255,255,0.14); display: block; }
+    .dash-side b.on { background: var(--accent-3); width: 80%; }
+    .dash-main { flex: 1; padding: 14px; }
+    .dash-stats { display: flex; gap: 8px; margin-bottom: 12px; }
+    .dash-stats .s { flex: 1; height: 30px; border-radius: 7px; background: rgba(255,255,255,0.07); }
+    .dash-chart { height: 60px; border-radius: 8px; background: rgba(255,255,255,0.04); display: flex; align-items: flex-end; gap: 6px; padding: 8px; }
+    .dash-chart span { flex: 1; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, var(--accent-3), rgba(255,92,138,0.3)); }
+
+    /* --- phone (Ember) --- */
+    .phone { width: 41%; border-radius: 20px; padding: 8px; background: #0b0910; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 20px 40px rgba(0,0,0,0.45); }
+    .phone-screen { border-radius: 14px; overflow: hidden; background: #16111a; }
+    .phone-hero { height: 78px; background: linear-gradient(135deg, #ffb347, #ff5c8a); position: relative; }
+    .phone-hero::after { content: '▶'; position: absolute; inset: 0; margin: auto; width: 26px; height: 26px; background: rgba(255,255,255,0.85); border-radius: 50%; color: #ff5c8a; display: grid; place-items: center; font-size: 0.7rem; }
+    .phone-body { padding: 12px; }
+    .phone-body .ph-h { height: 9px; width: 70%; border-radius: 4px; background: rgba(255,255,255,0.9); margin-bottom: 7px; }
+    .phone-body .ph-t { height: 6px; width: 90%; border-radius: 3px; background: rgba(255,255,255,0.2); margin-bottom: 5px; }
+    .phone-body .ph-t.short { width: 60%; margin-bottom: 12px; }
+    .phone-body .ph-btn { height: 24px; border-radius: 12px; background: linear-gradient(135deg, #ffb347, #ff5c8a); }
 
     /* ---------- PROCESS ---------- */
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: step; }
@@ -493,22 +549,89 @@
         <p>Placeholder projects — swap these tiles for your real case studies with a screenshot and a one-line result.</p>
       </div>
       <div class="work-grid">
-        <div class="work-card w1 reveal">
-          <div class="arrow">↗</div>
-          <div class="content"><span class="tag">Website · Branding</span><h3>Nova Studio</h3></div>
+
+        <!-- Nova Studio — website mockup in a browser frame -->
+        <div class="work-card reveal">
+          <div class="work-preview p1">
+            <div class="mock browser">
+              <div class="browser-bar">
+                <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+                <span class="u"></span>
+              </div>
+              <div class="browser-body">
+                <div class="bb-nav"><span class="brand"></span><span class="links"><b></b><b></b><b></b></span></div>
+                <div class="bb-h1"></div><div class="bb-h2"></div>
+                <div class="bb-row"><span class="card accent"></span><span class="card"></span><span class="card"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="work-meta">
+            <div><span class="tag">Website · Branding</span><h3>Nova Studio</h3></div>
+            <span class="arrow">↗</span>
+          </div>
         </div>
-        <div class="work-card w2 reveal">
-          <div class="arrow">↗</div>
-          <div class="content"><span class="tag">Logo · Identity</span><h3>Verdant Co.</h3></div>
+
+        <!-- Verdant Co. — logo & identity board -->
+        <div class="work-card reveal">
+          <div class="work-preview p2">
+            <div class="mock logo-board">
+              <div class="logo-tile hero">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C7 7 7 12 12 22C17 12 17 7 12 2Z" fill="#00e5c0"/></svg>
+                <span class="wordmark"></span>
+              </div>
+              <div class="logo-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#00e5c0" stroke-width="2.5"/><circle cx="12" cy="12" r="3" fill="#00e5c0"/></svg></div>
+              <div class="logo-tile"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="#7de9d8" stroke-width="2.5"/></svg></div>
+              <div class="logo-tile"><svg viewBox="0 0 24 24"><path d="M4 20L12 4L20 20Z" fill="none" stroke="#00e5c0" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+            </div>
+          </div>
+          <div class="work-meta">
+            <div><span class="tag">Logo · Identity</span><h3>Verdant Co.</h3></div>
+            <span class="arrow">↗</span>
+          </div>
         </div>
-        <div class="work-card w3 reveal">
-          <div class="arrow">↗</div>
-          <div class="content"><span class="tag">SaaS · UI/UX</span><h3>Pulse App</h3></div>
+
+        <!-- Pulse App — SaaS dashboard -->
+        <div class="work-card reveal">
+          <div class="work-preview p3">
+            <div class="mock dash">
+              <div class="dash-side">
+                <span class="logo-dot"></span>
+                <b class="on"></b><b></b><b></b><b></b><b></b>
+              </div>
+              <div class="dash-main">
+                <div class="dash-stats"><span class="s"></span><span class="s"></span><span class="s"></span></div>
+                <div class="dash-chart">
+                  <span style="height:40%"></span><span style="height:65%"></span><span style="height:50%"></span><span style="height:85%"></span><span style="height:70%"></span><span style="height:95%"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="work-meta">
+            <div><span class="tag">SaaS · UI/UX</span><h3>Pulse App</h3></div>
+            <span class="arrow">↗</span>
+          </div>
         </div>
-        <div class="work-card w4 reveal">
-          <div class="arrow">↗</div>
-          <div class="content"><span class="tag">Landing · Web</span><h3>Ember Fitness</h3></div>
+
+        <!-- Ember Fitness — mobile landing -->
+        <div class="work-card reveal">
+          <div class="work-preview p4">
+            <div class="mock phone">
+              <div class="phone-screen">
+                <div class="phone-hero"></div>
+                <div class="phone-body">
+                  <div class="ph-h"></div>
+                  <div class="ph-t"></div><div class="ph-t short"></div>
+                  <div class="ph-btn"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="work-meta">
+            <div><span class="tag">Landing · Web</span><h3>Ember Fitness</h3></div>
+            <span class="arrow">↗</span>
+          </div>
         </div>
+
       </div>
     </div>
   </section>

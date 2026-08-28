@@ -17,7 +17,7 @@ websites, logos, and brand identity design.
 8. **Footer** — nav, links, socials
 
 ## Make it yours
-- **Portfolio:** replace the four `.work-card` tiles in `#work` with real project screenshots (set a `background-image` on each card) and a one-line result.
+- **Portfolio:** the four `#work` tiles use built-in CSS/SVG device mockups (browser, logo board, dashboard, phone) so the page is fully self-contained. To show real work, replace the `.work-preview` contents of a tile with an image: `<div class="work-preview"><img src="assets/your-shot.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>` and update the `.work-meta` title/tag.
 - **Copy & stats:** the hero stats (120+, 7 days, 98%) and pricing are sample numbers — edit to match reality.
 - **Colors:** tweak the `--accent`, `--accent-2`, `--accent-3` and `--grad` variables at the top of the `<style>` block.
 - **Social links:** the footer icons currently point to `#` — add your real profile URLs.
