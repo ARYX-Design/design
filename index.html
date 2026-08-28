@@ -430,6 +430,91 @@
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
+    /* ========== COOL EFFECTS ========== */
+
+    /* scroll progress bar */
+    #progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--grad); z-index: 300; box-shadow: 0 0 14px rgba(124,92,255,0.9); transition: width 0.1s linear; }
+
+    /* custom cursor */
+    .cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+    .cursor-dot { width: 7px; height: 7px; background: #fff; }
+    .cursor-ring { width: 40px; height: 40px; border: 1.5px solid rgba(255,255,255,0.8); transition: width 0.2s ease, height 0.2s ease, background 0.2s ease; }
+    .cursor-ring.grow { width: 68px; height: 68px; background: rgba(255,255,255,0.08); }
+    body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
+    @media (hover: none), (max-width: 680px) { .cursor-dot, .cursor-ring { display: none !important; } body.has-cursor, body.has-cursor * { cursor: auto; } }
+
+    /* film grain overlay */
+    .grain { position: fixed; inset: 0; pointer-events: none; z-index: 250; opacity: 0.05; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+    /* hero particle canvas */
+    #particles { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+    /* animate the hero glows */
+    .hero::before { animation: floatGlow 14s ease-in-out infinite; }
+    .hero::after { animation: floatGlow 18s ease-in-out infinite reverse; }
+    @keyframes floatGlow {
+      0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+      50% { transform: translateX(-50%) translateY(40px) scale(1.12); }
+    }
+
+    /* gradient text shimmer */
+    .gradient-text { background-size: 200% auto; animation: shimmer 6s linear infinite; }
+    @keyframes shimmer { to { background-position: 200% center; } }
+
+    /* floating 3D cube */
+    .scene {
+      position: absolute; top: 16%; right: 5%;
+      width: 220px; height: 220px;
+      perspective: 900px; z-index: 1;
+      pointer-events: none;
+    }
+    .cube {
+      width: 100%; height: 100%; position: relative;
+      transform-style: preserve-3d;
+      animation: spinCube 18s linear infinite;
+    }
+    .cube .face {
+      position: absolute; inset: 0;
+      display: grid; place-items: center;
+      font-size: 3.4rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(124,92,255,0.28), rgba(0,229,192,0.16));
+      backdrop-filter: blur(4px);
+      box-shadow: inset 0 0 40px rgba(124,92,255,0.25);
+    }
+    .cube .f1 { transform: rotateY(0deg) translateZ(110px); }
+    .cube .f2 { transform: rotateY(90deg) translateZ(110px); }
+    .cube .f3 { transform: rotateY(180deg) translateZ(110px); }
+    .cube .f4 { transform: rotateY(-90deg) translateZ(110px); }
+    .cube .f5 { transform: rotateX(90deg) translateZ(110px); }
+    .cube .f6 { transform: rotateX(-90deg) translateZ(110px); }
+    @keyframes spinCube {
+      from { transform: rotateX(-20deg) rotateY(0deg); }
+      to { transform: rotateX(-20deg) rotateY(360deg); }
+    }
+    @media (max-width: 1080px) { .scene { display: none; } }
+
+    /* 3D tilt + cursor spotlight on cards */
+    .tilt { transform-style: preserve-3d; will-change: transform; transition: transform 0.12s ease; }
+    .spot { position: relative; }
+    .spot::after {
+      content: ''; position: absolute; inset: 0; border-radius: inherit;
+      background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(124,92,255,0.16), transparent 62%);
+      opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 3;
+    }
+    .spot:hover::after { opacity: 1; }
+
+    /* magnetic buttons keep a smooth return */
+    .magnetic { transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+    /* reduced motion: turn the show off */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      #particles, .scene, .cursor-dot, .cursor-ring, .grain { display: none !important; }
+      body.has-cursor, body.has-cursor * { cursor: auto !important; }
+    }
+
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 900px) {
       .services-grid, .process-grid, .pricing-grid { grid-template-columns: 1fr 1fr; }
@@ -454,6 +539,11 @@
 </head>
 <body>
 
+  <div id="progress"></div>
+  <div class="grain"></div>
+  <div class="cursor-ring"></div>
+  <div class="cursor-dot"></div>
+
   <!-- NAV -->
   <header>
     <div class="wrap">
@@ -474,6 +564,17 @@
 
   <!-- HERO -->
   <section class="hero" id="top">
+    <canvas id="particles"></canvas>
+    <div class="scene" aria-hidden="true">
+      <div class="cube">
+        <div class="face f1">🌐</div>
+        <div class="face f2">✦</div>
+        <div class="face f3">◨</div>
+        <div class="face f4">✎</div>
+        <div class="face f5">◆</div>
+        <div class="face f6">★</div>
+      </div>
+    </div>
     <div class="wrap">
       <div class="hero-badge"><span class="dot"></span> Available for new projects — Sept 2026</div>
       <h1>Websites &amp; logos that make you look <span class="gradient-text">world-class.</span></h1>
@@ -483,9 +584,9 @@
         <a href="#work" class="btn btn-ghost">See the work</a>
       </div>
       <div class="hero-stats">
-        <div class="stat"><div class="num gradient-text">120+</div><div class="label">Projects delivered</div></div>
-        <div class="stat"><div class="num gradient-text">7 days</div><div class="label">Avg. turnaround</div></div>
-        <div class="stat"><div class="num gradient-text">98%</div><div class="label">Repeat clients</div></div>
+        <div class="stat"><div class="num gradient-text"><span class="count" data-to="120">0</span>+</div><div class="label">Projects delivered</div></div>
+        <div class="stat"><div class="num gradient-text"><span class="count" data-to="7">0</span> days</div><div class="label">Avg. turnaround</div></div>
+        <div class="stat"><div class="num gradient-text"><span class="count" data-to="98">0</span>%</div><div class="label">Repeat clients</div></div>
       </div>
     </div>
   </section>
@@ -778,13 +879,16 @@
   </footer>
 
   <script>
-    // Mobile menu
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    /* ---- Mobile menu ---- */
     const toggle = document.getElementById('menuToggle');
     const links = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('open'));
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 
-    // Scroll reveal
+    /* ---- Scroll reveal ---- */
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
@@ -792,6 +896,150 @@
       el.style.transitionDelay = (i % 4 * 0.06) + 's';
       io.observe(el);
     });
+
+    /* ---- Scroll progress bar ---- */
+    const bar = document.getElementById('progress');
+    const onScroll = () => {
+      const h = document.documentElement;
+      const p = h.scrollTop / (h.scrollHeight - h.clientHeight);
+      bar.style.width = (p * 100) + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ---- Count-up stats ---- */
+    const counters = document.querySelectorAll('.count');
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target, to = +el.dataset.to;
+        cio.unobserve(el);
+        if (reduce) { el.textContent = to; return; }
+        const dur = 1400, t0 = performance.now();
+        const step = (t) => {
+          const k = Math.min((t - t0) / dur, 1);
+          const eased = 1 - Math.pow(1 - k, 3);
+          el.textContent = Math.round(eased * to);
+          if (k < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(c => cio.observe(c));
+
+    /* ---- Everything below is motion / pointer candy ---- */
+    if (!reduce && fine) {
+      document.body.classList.add('has-cursor');
+
+      /* Custom cursor */
+      const dot = document.querySelector('.cursor-dot');
+      const ring = document.querySelector('.cursor-ring');
+      let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+      window.addEventListener('mousemove', (e) => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+      });
+      const ringLoop = () => {
+        rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(ringLoop);
+      };
+      ringLoop();
+      document.querySelectorAll('a, button, .work-card, .service-card, .price-card').forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('grow'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('grow'));
+      });
+
+      /* 3D tilt + spotlight */
+      document.querySelectorAll('.service-card, .work-card, .price-card, .process-step').forEach(card => {
+        card.classList.add('tilt', 'spot');
+        card.addEventListener('pointermove', (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width;
+          const py = (e.clientY - r.top) / r.height;
+          const rotY = (px - 0.5) * 10;
+          const rotX = (0.5 - py) * 10;
+          card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+          card.style.setProperty('--mx', (px * 100) + '%');
+          card.style.setProperty('--my', (py * 100) + '%');
+        });
+        card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+      });
+
+      /* Magnetic buttons */
+      document.querySelectorAll('.btn-primary, .btn-dark').forEach(btn => {
+        btn.classList.add('magnetic');
+        btn.addEventListener('pointermove', (e) => {
+          const r = btn.getBoundingClientRect();
+          const x = e.clientX - r.left - r.width / 2;
+          const y = e.clientY - r.top - r.height / 2;
+          btn.style.transform = `translate(${x * 0.3}px, ${y * 0.4}px)`;
+        });
+        btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
+      });
+    }
+
+    /* ---- Hero particle constellation ---- */
+    if (!reduce) {
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      const hero = canvas.parentElement;
+      let w, h, pts = [], dpr = Math.min(devicePixelRatio || 1, 2);
+      let pointer = { x: -999, y: -999 };
+
+      const resize = () => {
+        w = hero.offsetWidth; h = hero.offsetHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const count = Math.min(Math.floor(w * h / 14000), 90);
+        pts = Array.from({ length: count }, () => ({
+          x: Math.random() * w, y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4
+        }));
+      };
+      resize();
+      window.addEventListener('resize', resize);
+      hero.addEventListener('mousemove', (e) => {
+        const r = hero.getBoundingClientRect();
+        pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top;
+      });
+      hero.addEventListener('mouseleave', () => { pointer.x = pointer.y = -999; });
+
+      const tick = () => {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of pts) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(160,150,255,0.7)';
+          ctx.fill();
+        }
+        for (let i = 0; i < pts.length; i++) {
+          for (let j = i + 1; j < pts.length; j++) {
+            const a = pts[i], b = pts[j];
+            const d = Math.hypot(a.x - b.x, a.y - b.y);
+            if (d < 120) {
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = `rgba(124,92,255,${0.16 * (1 - d / 120)})`;
+              ctx.lineWidth = 1; ctx.stroke();
+            }
+          }
+          const dm = Math.hypot(pts[i].x - pointer.x, pts[i].y - pointer.y);
+          if (dm < 160) {
+            ctx.beginPath();
+            ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pointer.x, pointer.y);
+            ctx.strokeStyle = `rgba(0,229,192,${0.4 * (1 - dm / 160)})`;
+            ctx.lineWidth = 1; ctx.stroke();
+          }
+        }
+        requestAnimationFrame(tick);
+      };
+      tick();
+    }
   </script>
 </body>
 </html>
