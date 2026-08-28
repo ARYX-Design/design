@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARYX — Digital Creator · Websites, Logos & Brand Design</title>
+  <meta name="description" content="ARYX is a digital creator crafting websites, logos, and brand identities that make small teams look world-class. Let's build something people remember." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ARYX — Websites, Logos & Brand Design" />
+  <meta property="og:description" content="Websites, logos, and brand identities that make you look world-class." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-soft: #12121a;
+      --surface: #16161f;
+      --surface-2: #1c1c28;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text: #f4f4f7;
+      --text-dim: #a0a0b0;
+      --text-faint: #6c6c7c;
+      --accent: #7c5cff;
+      --accent-2: #00e5c0;
+      --accent-3: #ff5c8a;
+      --grad: linear-gradient(120deg, #7c5cff 0%, #00e5c0 100%);
+      --radius: 18px;
+      --maxw: 1160px;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--accent); color: #fff; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+    .eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; }
+
+    .gradient-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ---------- NAV ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(10, 10, 15, 0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo .mark {
+      width: 30px; height: 30px;
+      border-radius: 9px;
+      background: var(--grad);
+      display: grid; place-items: center;
+      font-size: 0.95rem;
+      color: #0a0a0f;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(124, 92, 255, 0.4);
+    }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { color: var(--text-dim); font-size: 0.94rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--grad);
+      color: #08080c;
+      box-shadow: 0 8px 24px rgba(124, 92, 255, 0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(124, 92, 255, 0.5); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+    }
+    .btn-ghost:hover { background: var(--surface-2); transform: translateY(-2px); }
+    .nav-cta { display: flex; align-items: center; gap: 8px; }
+
+    .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+    /* ---------- HERO ---------- */
+    .hero { position: relative; padding: 92px 0 96px; overflow: hidden; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 900px;
+      background: radial-gradient(circle, rgba(124, 92, 255, 0.22) 0%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0, 229, 192, 0.14) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero .wrap { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 7px 16px 7px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+    }
+    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2); }
+    .hero h1 { font-size: clamp(2.6rem, 6.5vw, 5rem); max-width: 15ch; margin-bottom: 26px; }
+    .hero p.lead { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--text-dim); max-width: 56ch; margin-bottom: 38px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+    .hero-stats {
+      display: flex;
+      gap: 44px;
+      margin-top: 64px;
+      flex-wrap: wrap;
+    }
+    .stat .num { font-family: var(--font-display); font-size: 2.1rem; font-weight: 700; }
+    .stat .label { color: var(--text-faint); font-size: 0.88rem; }
+
+    /* ---------- MARQUEE ---------- */
+    .marquee-band {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-soft);
+      padding: 22px 0;
+      overflow: hidden;
+    }
+    .marquee { display: flex; gap: 56px; white-space: nowrap; animation: scroll 26s linear infinite; width: max-content; }
+    .marquee span { font-family: var(--font-display); font-size: 1.05rem; color: var(--text-faint); font-weight: 500; display: inline-flex; align-items: center; gap: 56px; }
+    .marquee span::after { content: '✦'; color: var(--accent); }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+
+    /* ---------- SECTION SHELL ---------- */
+    section.block { padding: 100px 0; }
+    .section-head { max-width: 640px; margin-bottom: 56px; }
+    .section-head .eyebrow { display: block; margin-bottom: 16px; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 3.1rem); margin-bottom: 18px; }
+    .section-head p { color: var(--text-dim); font-size: 1.08rem; }
+
+    /* ---------- SERVICES ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 34px 30px;
+      transition: transform 0.25s ease, border-color 0.25s, background 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(124, 92, 255, 0.12), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); border-color: var(--border-strong); background: var(--surface-2); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: grid; place-items: center;
+      font-size: 1.5rem;
+      margin-bottom: 22px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+    .service-card h3 { font-size: 1.3rem; margin-bottom: 12px; }
+    .service-card p { color: var(--text-dim); font-size: 0.97rem; margin-bottom: 18px; }
+    .service-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .service-card li { color: var(--text-faint); font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+    .service-card li::before { content: '→'; color: var(--accent-2); }
+
+    /* ---------- WORK / PORTFOLIO ---------- */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    .work-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+      aspect-ratio: 16 / 11;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      cursor: pointer;
+      transition: transform 0.25s ease, border-color 0.25s;
+    }
+    .work-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
+    .work-card .content { position: relative; z-index: 2; }
+    .work-card .tag { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.7); margin-bottom: 8px; display: block; font-weight: 600; }
+    .work-card h3 { font-size: 1.5rem; color: #fff; }
+    .work-card .arrow { position: absolute; top: 26px; right: 26px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.14); backdrop-filter: blur(6px); display: grid; place-items: center; color: #fff; font-size: 1.1rem; transition: background 0.2s, transform 0.2s; }
+    .work-card:hover .arrow { background: #fff; color: #111; transform: rotate(-45deg); }
+    .w1 { background: linear-gradient(135deg, #7c5cff, #4a2fd6); }
+    .w2 { background: linear-gradient(135deg, #00e5c0, #0891b2); }
+    .w3 { background: linear-gradient(135deg, #ff5c8a, #b3245c); }
+    .w4 { background: linear-gradient(135deg, #ffb347, #ff5c8a); }
+
+    /* ---------- PROCESS ---------- */
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: step; }
+    .process-step { padding: 30px 26px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); position: relative; }
+    .process-step .step-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; color: var(--accent); opacity: 0.35; margin-bottom: 14px; }
+    .process-step h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .process-step p { color: var(--text-dim); font-size: 0.92rem; }
+
+    /* ---------- PRICING ---------- */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+    }
+    .price-card.featured {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, rgba(124, 92, 255, 0.1), var(--surface));
+      position: relative;
+    }
+    .price-card.featured::after {
+      content: 'Most popular';
+      position: absolute;
+      top: 22px; right: 24px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+    .price-card .plan { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin-bottom: 6px; }
+    .price-card .plan-desc { color: var(--text-faint); font-size: 0.88rem; margin-bottom: 24px; }
+    .price-card .price { font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; margin-bottom: 4px; }
+    .price-card .price span { font-size: 1rem; color: var(--text-faint); font-weight: 400; }
+    .price-card .price-note { color: var(--text-faint); font-size: 0.85rem; margin-bottom: 26px; }
+    .price-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; flex: 1; }
+    .price-card li { font-size: 0.92rem; color: var(--text-dim); display: flex; gap: 11px; align-items: flex-start; }
+    .price-card li::before { content: '✓'; color: var(--accent-2); font-weight: 700; }
+    .price-card .btn { width: 100%; justify-content: center; }
+
+    /* ---------- ABOUT ---------- */
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-visual {
+      aspect-ratio: 1;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--surface-2), var(--surface));
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+    .about-visual .glow { position: absolute; width: 70%; height: 70%; background: var(--grad); filter: blur(80px); opacity: 0.35; border-radius: 50%; }
+    .about-visual .initials { font-family: var(--font-display); font-size: 8rem; font-weight: 700; z-index: 1; }
+    .about-text h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); margin-bottom: 22px; }
+    .about-text p { color: var(--text-dim); margin-bottom: 18px; font-size: 1.05rem; }
+    .about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .about-tags span { font-size: 0.85rem; padding: 7px 15px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); }
+
+    /* ---------- CTA ---------- */
+    .cta-band { position: relative; overflow: hidden; }
+    .cta-inner {
+      background: var(--grad);
+      border-radius: 28px;
+      padding: 72px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-inner h2 { font-size: clamp(2rem, 4.5vw, 3.3rem); color: #08080c; margin-bottom: 18px; }
+    .cta-inner p { color: rgba(8, 8, 12, 0.72); font-size: 1.15rem; max-width: 46ch; margin: 0 auto 34px; font-weight: 500; }
+    .cta-inner .btn-dark { background: #0a0a0f; color: #fff; }
+    .cta-inner .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
+
+    /* ---------- FOOTER ---------- */
+    footer { border-top: 1px solid var(--border); padding: 60px 0 40px; background: var(--bg-soft); }
+    .footer-top { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-bottom: 48px; }
+    .footer-brand { max-width: 320px; }
+    .footer-brand p { color: var(--text-dim); font-size: 0.95rem; margin-top: 16px; }
+    .footer-cols { display: flex; gap: 64px; flex-wrap: wrap; }
+    .footer-col h4 { font-family: var(--font-display); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-faint); margin-bottom: 16px; }
+    .footer-col a { display: block; color: var(--text-dim); font-size: 0.95rem; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 16px; }
+    .footer-bottom p { color: var(--text-faint); font-size: 0.88rem; }
+    .social { display: flex; gap: 12px; }
+    .social a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; color: var(--text-dim); transition: all 0.2s; font-size: 0.9rem; }
+    .social a:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); }
+
+    /* ---------- REVEAL ANIM ---------- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .services-grid, .process-grid, .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .about { grid-template-columns: 1fr; }
+      .about-visual { max-width: 380px; margin: 0 auto; order: -1; }
+    }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0;
+        background: var(--bg-soft); padding: 24px; gap: 18px; border-bottom: 1px solid var(--border);
+      }
+      .services-grid, .process-grid, .pricing-grid, .work-grid { grid-template-columns: 1fr; }
+      .hero { padding: 60px 0 70px; }
+      .hero-stats { gap: 28px; }
+      .cta-inner { padding: 48px 26px; }
+      section.block { padding: 70px 0; }
+      .footer-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <div class="wrap">
+      <nav>
+        <a href="#top" class="logo"><span class="mark">A</span>ARYX</a>
+        <div class="nav-links" id="navLinks">
+          <a href="#services">Services</a>
+          <a href="#work">Work</a>
+          <a href="#process">Process</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#about">About</a>
+          <a href="#contact" class="btn btn-primary">Start a project</a>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-badge"><span class="dot"></span> Available for new projects — Sept 2026</div>
+      <h1>Websites &amp; logos that make you look <span class="gradient-text">world-class.</span></h1>
+      <p class="lead">I'm ARYX — a digital creator who designs and builds brands from the ground up. Websites, logos, and visual identities that help small teams punch far above their weight.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Start a project →</a>
+        <a href="#work" class="btn btn-ghost">See the work</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num gradient-text">120+</div><div class="label">Projects delivered</div></div>
+        <div class="stat"><div class="num gradient-text">7 days</div><div class="label">Avg. turnaround</div></div>
+        <div class="stat"><div class="num gradient-text">98%</div><div class="label">Repeat clients</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-band">
+    <div class="marquee">
+      <span>Brand Identity</span><span>Web Design</span><span>Logo Design</span><span>Webflow &amp; Code</span><span>UI/UX</span><span>Landing Pages</span><span>Brand Identity</span><span>Web Design</span><span>Logo Design</span><span>Webflow &amp; Code</span><span>UI/UX</span><span>Landing Pages</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">What I do</span>
+        <h2>One creator, everything your brand needs.</h2>
+        <p>From the first sketch of a logo to a live, fast-loading website — I handle the whole stack of your visual presence so you don't have to juggle five freelancers.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">🌐</div>
+          <h3>Websites</h3>
+          <p>Fast, responsive, conversion-focused sites that look stunning on every screen.</p>
+          <ul>
+            <li>Landing pages &amp; full sites</li>
+            <li>Webflow, Framer or hand-coded</li>
+            <li>SEO &amp; performance built in</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">✦</div>
+          <h3>Logo &amp; Identity</h3>
+          <p>Memorable logos and complete brand systems that set you apart.</p>
+          <ul>
+            <li>Logo suite &amp; variations</li>
+            <li>Color, type &amp; guidelines</li>
+            <li>Social &amp; print-ready assets</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">◨</div>
+          <h3>UI / UX Design</h3>
+          <p>Interfaces and product designs that feel effortless to use.</p>
+          <ul>
+            <li>App &amp; dashboard design</li>
+            <li>Design systems in Figma</li>
+            <li>Prototypes &amp; handoff</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="block" id="work" style="padding-top: 20px;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Selected work</span>
+        <h2>A few brands I've helped build.</h2>
+        <p>Placeholder projects — swap these tiles for your real case studies with a screenshot and a one-line result.</p>
+      </div>
+      <div class="work-grid">
+        <div class="work-card w1 reveal">
+          <div class="arrow">↗</div>
+          <div class="content"><span class="tag">Website · Branding</span><h3>Nova Studio</h3></div>
+        </div>
+        <div class="work-card w2 reveal">
+          <div class="arrow">↗</div>
+          <div class="content"><span class="tag">Logo · Identity</span><h3>Verdant Co.</h3></div>
+        </div>
+        <div class="work-card w3 reveal">
+          <div class="arrow">↗</div>
+          <div class="content"><span class="tag">SaaS · UI/UX</span><h3>Pulse App</h3></div>
+        </div>
+        <div class="work-card w4 reveal">
+          <div class="arrow">↗</div>
+          <div class="content"><span class="tag">Landing · Web</span><h3>Ember Fitness</h3></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="block" id="process">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>A simple process, zero surprises.</h2>
+        <p>Clear steps, fixed timelines, and one point of contact from kickoff to launch.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step reveal"><div class="step-num">01</div><h3>Discover</h3><p>We talk goals, audience, and vibe. I learn what makes your brand tick.</p></div>
+        <div class="process-step reveal"><div class="step-num">02</div><h3>Design</h3><p>Concepts, drafts, and iterations until it feels unmistakably yours.</p></div>
+        <div class="process-step reveal"><div class="step-num">03</div><h3>Build</h3><p>I develop the site or finalize your assets — pixel-perfect and fast.</p></div>
+        <div class="process-step reveal"><div class="step-num">04</div><h3>Launch</h3><p>We ship it live, and I hand off everything you need to grow.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="block" id="pricing">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Packages</span>
+        <h2>Straightforward pricing.</h2>
+        <p>Fixed-price packages so you know exactly what you're getting. Custom quotes available for bigger builds.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card reveal">
+          <div class="plan">Logo &amp; Brand</div>
+          <div class="plan-desc">A complete identity kit</div>
+          <div class="price">$490<span></span></div>
+          <div class="price-note">one-time · ~5 days</div>
+          <ul>
+            <li>Primary logo + variations</li>
+            <li>Color palette &amp; typography</li>
+            <li>Mini brand guidelines</li>
+            <li>Social profile assets</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost">Get started</a>
+        </div>
+        <div class="price-card featured reveal">
+          <div class="plan">Website + Brand</div>
+          <div class="plan-desc">The full launch package</div>
+          <div class="price">$1,900<span></span></div>
+          <div class="price-note">one-time · ~2–3 weeks</div>
+          <ul>
+            <li>Everything in Logo &amp; Brand</li>
+            <li>Up to 5-page responsive site</li>
+            <li>Copy polish &amp; SEO setup</li>
+            <li>Fast, mobile-first build</li>
+            <li>2 rounds of revisions</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Start a project</a>
+        </div>
+        <div class="price-card reveal">
+          <div class="plan">Custom</div>
+          <div class="plan-desc">Product, app or ongoing work</div>
+          <div class="price">Let's talk<span></span></div>
+          <div class="price-note">scoped to your needs</div>
+          <ul>
+            <li>Web apps &amp; dashboards</li>
+            <li>Design systems</li>
+            <li>Ongoing design retainer</li>
+            <li>Priority turnaround</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="block" id="about">
+    <div class="wrap about">
+      <div class="about-visual reveal">
+        <div class="glow"></div>
+        <div class="initials gradient-text">A</div>
+      </div>
+      <div class="about-text reveal">
+        <span class="eyebrow" style="display:block;margin-bottom:16px;">About ARYX</span>
+        <h2>Design that does the heavy lifting for your brand.</h2>
+        <p>I'm a digital creator obsessed with the details that make a brand feel premium — the weight of a logo, the rhythm of a layout, the split-second a page takes to load.</p>
+        <p>Working with one person means faster decisions, a consistent vision, and a brand that actually feels like <em>you</em> — not stitched together from templates.</p>
+        <div class="about-tags">
+          <span>Figma</span><span>Webflow</span><span>Framer</span><span>HTML/CSS</span><span>Illustrator</span><span>Brand Strategy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="block cta-band" id="contact">
+    <div class="wrap">
+      <div class="cta-inner reveal">
+        <h2>Let's build something people remember.</h2>
+        <p>Tell me about your project and I'll get back to you within 24 hours with next steps.</p>
+        <a href="mailto:aryx.design@gmail.com?subject=New%20project%20inquiry" class="btn btn-dark">✉ aryx.design@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#top" class="logo"><span class="mark">A</span>ARYX</a>
+          <p>Digital creator crafting websites, logos, and brand identities for teams who want to look world-class.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Services</h4>
+            <a href="#services">Websites</a>
+            <a href="#services">Logo &amp; Identity</a>
+            <a href="#services">UI / UX Design</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#work">Work</a>
+            <a href="#process">Process</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#about">About</a>
+          </div>
+          <div class="footer-col">
+            <h4>Get in touch</h4>
+            <a href="mailto:aryx.design@gmail.com">aryx.design@gmail.com</a>
+            <a href="#contact">Start a project</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ARYX. All rights reserved.</p>
+        <div class="social">
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="Dribbble">●</a>
+          <a href="#" aria-label="X / Twitter">✕</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const toggle = document.getElementById('menuToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 4 * 0.06) + 's';
+      io.observe(el);
+    });
+  </script>
+</body>
+</html>
