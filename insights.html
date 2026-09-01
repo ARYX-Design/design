@@ -110,8 +110,35 @@
     .foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
     .foot p { color: var(--text-faint); font-size: 0.86rem; }
 
+    /* terminal / signal monitor */
+    .term-sec { margin: 8px 0 44px; }
+    .term-sec .eyebrow { display: block; margin-bottom: 12px; }
+    .term-sec h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 10px; }
+    .term-sec .lead { color: var(--text-dim); max-width: 62ch; margin-bottom: 20px; font-size: 1rem; }
+    .terminal { background: #0b0d12; border: 1px solid var(--border-strong); border-radius: 14px; overflow: hidden; box-shadow: 0 24px 54px rgba(0,0,0,0.5); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .term-bar { display: flex; align-items: center; gap: 8px; padding: 12px 15px; background: #12151d; border-bottom: 1px solid var(--border); }
+    .term-bar i { width: 11px; height: 11px; border-radius: 50%; }
+    .term-bar .title { margin-left: 8px; color: var(--text-faint); font-size: 0.8rem; letter-spacing: 0.03em; }
+    .term-bar .live { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; color: var(--accent-2); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; }
+    .term-bar .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 9px var(--accent-2); animation: blink 1.4s infinite; }
+    .term-body { padding: 16px 18px; height: 360px; overflow-y: auto; font-size: 0.85rem; line-height: 1.75; }
+    .term-body::-webkit-scrollbar { width: 8px; }
+    .term-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+    .ln { white-space: pre-wrap; word-break: break-word; color: var(--text-dim); }
+    .ln .ts { color: #444a59; }
+    .ln .tag { font-weight: 700; }
+    .tag-INFO { color: var(--text-faint); } .tag-OK { color: #3ddc97; } .tag-SIGNAL { color: var(--accent); }
+    .tag-WARN { color: var(--amber); } .tag-ALERT { color: var(--critical); }
+    .ln.warn-row { color: #f1ddbb; } .ln.alert-row { color: #ffc7cc; }
+    .cursor { display: inline-block; width: 8px; height: 1.05em; background: var(--accent-2); vertical-align: -2px; margin-left: 1px; animation: blink 1s step-end infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .term-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-size: 0.78rem; color: var(--text-faint); }
+    .term-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .term-legend b { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+
     @media (max-width: 760px) {
       .stats { grid-template-columns: 1fr; }
+      .term-body { height: 320px; font-size: 0.78rem; }
       .nav-links a:not(.active):not(.btn) { display: none; }
       .chart-head { flex-direction: column; align-items: flex-start; }
     }
@@ -180,6 +207,27 @@
 
       <p class="source" id="source"></p>
     </div>
+
+    <section class="term-sec">
+      <span class="eyebrow">Live Signal Monitor</span>
+      <h2>Global macro — warnings &amp; early indicators</h2>
+      <p class="lead">A simulated monitoring feed tracking the leading signals that tend to move <em>before</em> the headlines do — yield curves, PMIs, freight rates, credit spreads and commodity ratios. Watch it stream.</p>
+      <div class="terminal">
+        <div class="term-bar">
+          <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+          <span class="title">aryx@global-monitor: ~/econ/signals</span>
+          <span class="live"><span class="pulse"></span> Live</span>
+        </div>
+        <div class="term-body" id="termBody" aria-live="polite"></div>
+      </div>
+      <div class="term-legend">
+        <span><b style="background:var(--accent)"></b>Signal</span>
+        <span><b style="background:var(--amber)"></b>Warning</span>
+        <span><b style="background:var(--critical)"></b>Alert</span>
+        <span><b style="background:#3ddc97"></b>OK</span>
+        <span style="margin-left:auto">Illustrative feed — not financial advice.</span>
+      </div>
+    </section>
   </div>
 
   <div class="back-cta">
@@ -353,6 +401,87 @@
     vTable.addEventListener('click', () => { vTable.classList.add('on'); vChart.classList.remove('on'); wrap.style.display = 'none'; document.getElementById('dataTable').classList.add('show'); });
 
     render('gdp');
+
+    /* ---- Signal Monitor terminal ---- */
+    (function () {
+      const body = document.getElementById('termBody');
+      if (!body) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const FEED = [
+        ['INFO',   'boot: ARYX Global Macro Monitor v1.2 — session initialised'],
+        ['INFO',   'region feeds  US · EU · CN · EM ............ connected'],
+        ['SIGNAL', 'US 10y–2y spread inverted (−0.38pp) → recession-lead signal active'],
+        ['WARN',   'OECD leading indicator (CLI): 3rd consecutive monthly decline across G7'],
+        ['SIGNAL', 'Global manufacturing PMI 49.3 → sub-50, contraction territory'],
+        ['OK',     'Labour markets resilient — unemployment near cycle lows'],
+        ['SIGNAL', 'Copper/Gold ratio falling → growth momentum cooling'],
+        ['INFO',   'World CPI easing 5.8% vs 6.8% prior — disinflation intact'],
+        ['WARN',   'EM sovereign debt-service costs elevated — refinancing risk rising'],
+        ['SIGNAL', 'Baltic Dry Index −12% m/m → global trade volume softening'],
+        ['SIGNAL', 'High-yield credit spreads widening +45bp → risk-off building'],
+        ['WARN',   'Consumer sentiment below long-run average in 3 major economies'],
+        ['SIGNAL', 'Semiconductor billings −6% y/y → capex slowdown flagged'],
+        ['INFO',   'Container freight (Shanghai→LA) normalising toward pre-shock band'],
+        ['ALERT',  'composite risk: ELEVATED — monitor liquidity & central-bank pivots'],
+        ['INFO',   'scan complete — next refresh in 300s'],
+      ];
+
+      let clock = 9 * 3600 + 41 * 60 + 2; // 09:41:02 UTC, illustrative
+      const stamp = () => {
+        const h = String(Math.floor(clock / 3600) % 24).padStart(2, '0');
+        const m = String(Math.floor(clock / 60) % 60).padStart(2, '0');
+        const s = String(clock % 60).padStart(2, '0');
+        return `${h}:${m}:${s}`;
+      };
+      const wait = ms => new Promise(r => setTimeout(r, ms));
+
+      function rowEl(tag) {
+        const div = document.createElement('div');
+        div.className = 'ln' + (tag === 'WARN' ? ' warn-row' : tag === 'ALERT' ? ' alert-row' : '');
+        div.innerHTML = `<span class="ts">[${stamp()}]</span> <span class="tag tag-${tag}">${tag.padEnd(6)}</span> `;
+        return div;
+      }
+
+      if (reduce) {
+        FEED.forEach(([tag, text]) => { const d = rowEl(tag); d.appendChild(document.createTextNode(text)); body.appendChild(d); clock += 3; });
+        const p = document.createElement('div'); p.className = 'ln';
+        p.innerHTML = `<span class="ts">[${stamp()}]</span> $ <span class="cursor"></span>`;
+        body.appendChild(p);
+        return;
+      }
+
+      async function run() {
+        while (true) {
+          body.innerHTML = '';
+          clock = 9 * 3600 + 41 * 60 + 2;
+          for (const [tag, text] of FEED) {
+            const div = rowEl(tag);
+            const span = document.createElement('span');
+            const cur = document.createElement('span'); cur.className = 'cursor';
+            div.appendChild(span); div.appendChild(cur);
+            body.appendChild(div);
+            for (const ch of text) {
+              span.textContent += ch;
+              body.scrollTop = body.scrollHeight;
+              await wait(9 + Math.random() * 22);
+            }
+            cur.remove();
+            clock += 2 + Math.floor(Math.random() * 4);
+            await wait(280 + Math.random() * 260);
+          }
+          const prompt = document.createElement('div'); prompt.className = 'ln';
+          prompt.innerHTML = `<span class="ts">[${stamp()}]</span> $ <span class="cursor"></span>`;
+          body.appendChild(prompt); body.scrollTop = body.scrollHeight;
+          await wait(6000);
+        }
+      }
+      // start only when scrolled into view, to save cycles
+      const io = new IntersectionObserver((e) => {
+        if (e[0].isIntersecting) { io.disconnect(); run(); }
+      }, { threshold: 0.25 });
+      io.observe(body);
+    })();
   </script>
 </body>
 </html>
