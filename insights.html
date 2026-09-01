@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARYX Insights — The Global Economy in Crisis</title>
+  <meta name="description" content="An interactive data story on global economic shocks — world GDP growth, inflation, and public debt through the 2008 and 2020 crises. A data-visualization demo by ARYX." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0f; --bg-soft: #12121a; --surface: #16161f; --surface-2: #1c1c28;
+      --border: rgba(255,255,255,0.08); --border-strong: rgba(255,255,255,0.16);
+      --text: #f4f4f7; --text-dim: #a0a0b0; --text-faint: #6c6c7c;
+      --accent: #7c5cff; --accent-2: #00e5c0; --accent-3: #ff5c8a;
+      --amber: #ffb347; --critical: #ff5c6a;
+      --grad: linear-gradient(120deg, #7c5cff 0%, #00e5c0 100%);
+      --radius: 18px; --maxw: 1160px;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    ::selection { background: var(--accent); color: #fff; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+    .gradient-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .eyebrow { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-2); font-weight: 600; }
+
+    /* nav */
+    header { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(14px); background: rgba(10,10,15,0.7); border-bottom: 1px solid var(--border); }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; display: flex; align-items: center; gap: 10px; }
+    .logo .mark { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; box-shadow: 0 6px 20px rgba(124,92,255,0.4); }
+    .logo .mark svg { width: 64%; height: 64%; }
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { color: var(--text-dim); font-size: 0.94rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active { position: relative; }
+    .nav-links a.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--grad); border-radius: 2px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--border-strong); transition: transform 0.15s, background 0.2s; }
+    .btn:hover { transform: translateY(-2px); background: var(--surface-2); }
+
+    /* header block */
+    .page-head { padding: 64px 0 34px; position: relative; overflow: hidden; }
+    .page-head::before { content: ''; position: absolute; top: -40%; left: 60%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(124,92,255,0.16), transparent 60%); pointer-events: none; }
+    .page-head .wrap { position: relative; }
+    .page-head .eyebrow { display: block; margin-bottom: 16px; }
+    .page-head h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); max-width: 18ch; margin-bottom: 18px; }
+    .page-head p { color: var(--text-dim); font-size: 1.08rem; max-width: 60ch; }
+
+    /* stat callouts */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 8px 0 40px; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; }
+    .stat-card .k { font-family: var(--font-display); font-size: 2.1rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+    .stat-card .l { color: var(--text-dim); font-size: 0.9rem; }
+    .stat-card .k.down { color: var(--critical); }
+    .stat-card .k.up { color: var(--amber); }
+
+    /* chart panel */
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 26px; }
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+    .tab { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--text-dim); cursor: pointer; transition: all 0.2s; }
+    .tab:hover { color: var(--text); border-color: var(--border-strong); }
+    .tab.active { background: var(--grad); color: #08080c; border-color: transparent; }
+    .chart-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin: 22px 0 10px; flex-wrap: wrap; }
+    .chart-head h2 { font-size: 1.5rem; margin-bottom: 6px; }
+    .chart-head p { color: var(--text-dim); font-size: 0.95rem; max-width: 62ch; }
+    .chart-toggle { display: flex; gap: 6px; }
+    .chart-toggle button { font-size: 0.8rem; font-weight: 600; padding: 7px 13px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--text-dim); cursor: pointer; }
+    .chart-toggle button.on { color: var(--text); border-color: var(--border-strong); background: var(--surface-2); }
+
+    .chart-wrap { position: relative; margin-top: 12px; }
+    .chart-wrap svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .grid line { stroke: rgba(255,255,255,0.06); stroke-width: 1; }
+    .zero line { stroke: rgba(255,255,255,0.28); stroke-width: 1.4; stroke-dasharray: 4 4; }
+    .axis text { fill: var(--text-faint); font-family: var(--font-body); font-size: 12px; }
+    .series-line { fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .dot { stroke: var(--surface); stroke-width: 2; }
+    .crisis-band { fill: rgba(255,92,106,0.07); }
+    .crisis-line { stroke: rgba(255,92,106,0.5); stroke-width: 1.2; stroke-dasharray: 3 3; }
+    .crisis-label { fill: var(--critical); font-family: var(--font-display); font-size: 11px; font-weight: 600; }
+    .crosshair { stroke: rgba(255,255,255,0.35); stroke-width: 1; }
+
+    .tooltip { position: absolute; pointer-events: none; opacity: 0; transform: translate(-50%, -120%); background: #0c0c14; border: 1px solid var(--border-strong); border-radius: 10px; padding: 9px 12px; font-size: 0.85rem; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,0.5); transition: opacity 0.12s; z-index: 5; }
+    .tooltip .yr { color: var(--text-faint); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .tooltip .val { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+
+    /* data table */
+    .data-table { display: none; margin-top: 18px; overflow-x: auto; }
+    .data-table.show { display: block; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: right; padding: 9px 14px; border-bottom: 1px solid var(--border); }
+    th:first-child, td:first-child { text-align: left; }
+    thead th { color: var(--text-faint); font-family: var(--font-display); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    tbody td { color: var(--text-dim); }
+    tr.is-crisis td { color: var(--critical); font-weight: 600; }
+
+    .source { color: var(--text-faint); font-size: 0.82rem; margin-top: 16px; }
+    .source a { color: var(--text-dim); text-decoration: underline; text-underline-offset: 2px; }
+
+    .back-cta { text-align: center; padding: 20px 0 70px; }
+    .back-cta a { font-family: var(--font-display); font-weight: 600; color: var(--text-dim); }
+    .back-cta a:hover { color: var(--text); }
+
+    footer { border-top: 1px solid var(--border); padding: 34px 0; background: var(--bg-soft); }
+    .foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+    .foot p { color: var(--text-faint); font-size: 0.86rem; }
+
+    @media (max-width: 760px) {
+      .stats { grid-template-columns: 1fr; }
+      .nav-links a:not(.active):not(.btn) { display: none; }
+      .chart-head { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <nav>
+        <a href="index.html" class="logo">
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4.5 20 L12 4 L19.5 20" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 14.5 L16 14.5" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+          ARYX
+        </a>
+        <div class="nav-links">
+          <a href="index.html#services">Services</a>
+          <a href="index.html#work">Work</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="insights.html" class="active">Insights</a>
+          <a href="index.html#contact" class="btn">Start a project →</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Data Story · Visualization Demo</span>
+      <h1>The global economy, <span class="gradient-text">through its crises.</span></h1>
+      <p>Two once-in-a-generation shocks — the 2008 financial crisis and the 2020 pandemic — reshaped the world economy. This interactive piece traces how growth, prices, and debt moved through them. Built from scratch in SVG as a taste of the data-visualization work ARYX does.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat-card"><div class="k down">−3.1%</div><div class="l">World GDP growth in 2020 — the deepest peacetime contraction since the 1930s.</div></div>
+      <div class="stat-card"><div class="k up">8.7%</div><div class="l">Global inflation peak in 2022, the highest in roughly four decades.</div></div>
+      <div class="stat-card"><div class="k">~99%</div><div class="l">Global public debt as a share of GDP at the 2020 pandemic peak.</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-key="gdp">GDP Growth</button>
+        <button class="tab" data-key="inflation">Inflation</button>
+        <button class="tab" data-key="debt">Public Debt</button>
+      </div>
+
+      <div class="chart-head">
+        <div>
+          <h2 id="chartTitle">World GDP growth</h2>
+          <p id="chartDesc">Annual change in real global GDP. The two dips — 2009 and 2020 — mark the financial crisis and the pandemic.</p>
+        </div>
+        <div class="chart-toggle">
+          <button id="viewChart" class="on">Chart</button>
+          <button id="viewTable">Table</button>
+        </div>
+      </div>
+
+      <div class="chart-wrap" id="chartWrap">
+        <div class="tooltip" id="tooltip"></div>
+        <!-- svg injected -->
+      </div>
+
+      <div class="data-table" id="dataTable"></div>
+
+      <p class="source" id="source"></p>
+    </div>
+  </div>
+
+  <div class="back-cta">
+    <a href="index.html">← Back to ARYX home</a>
+  </div>
+
+  <footer>
+    <div class="wrap foot">
+      <p>© 2026 ARYX. Data-visualization demo.</p>
+      <p>Figures are illustrative approximations from public IMF &amp; World Bank aggregates.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ---- Data (illustrative approximations, IMF / World Bank world aggregates) ---- */
+    const DATASETS = {
+      gdp: {
+        title: 'World GDP growth',
+        desc: 'Annual change in real global GDP. The two dips — 2009 and 2020 — mark the financial crisis and the pandemic.',
+        unit: '%', color: 'var(--accent)', zero: true, decimals: 1,
+        source: 'Source: IMF World Economic Outlook / World Bank, real GDP growth (world). Values rounded and illustrative.',
+        crises: { 2009: 'Financial crisis', 2020: 'COVID-19' },
+        data: [[2005,3.9],[2006,4.4],[2007,4.3],[2008,1.9],[2009,-1.3],[2010,4.5],[2011,3.3],[2012,2.7],[2013,2.8],[2014,3.1],[2015,3.0],[2016,2.8],[2017,3.3],[2018,3.1],[2019,2.6],[2020,-3.1],[2021,6.3],[2022,3.6],[2023,3.3],[2024,3.2]]
+      },
+      inflation: {
+        title: 'Global inflation',
+        desc: 'Average consumer-price inflation worldwide. Supply shocks and stimulus drove the 2022 spike to a multi-decade high.',
+        unit: '%', color: 'var(--amber)', zero: false, decimals: 1,
+        source: 'Source: IMF World Economic Outlook, world consumer prices (annual %). Values rounded and illustrative.',
+        crises: { 2022: 'Inflation shock' },
+        data: [[2015,2.8],[2016,2.8],[2017,3.2],[2018,3.6],[2019,3.5],[2020,3.2],[2021,4.7],[2022,8.7],[2023,6.8],[2024,5.8]]
+      },
+      debt: {
+        title: 'Global public debt',
+        desc: 'General-government gross debt as a share of world GDP. Crisis-era spending pushed it to record peacetime highs.',
+        unit: '% of GDP', color: 'var(--accent-3)', zero: false, decimals: 0,
+        source: 'Source: IMF Global Debt Database, general government debt (% of GDP, world). Values rounded and illustrative.',
+        crises: { 2009: 'Crisis spending', 2020: 'Pandemic stimulus' },
+        data: [[2005,63],[2006,62],[2007,63],[2008,68],[2009,76],[2010,78],[2011,79],[2012,81],[2013,80],[2014,80],[2015,80],[2016,83],[2017,82],[2018,82],[2019,84],[2020,99],[2021,96],[2022,92],[2023,93],[2024,93]]
+      }
+    };
+
+    const W = 780, H = 380, padL = 48, padR = 20, padT = 24, padB = 40;
+    const wrap = document.getElementById('chartWrap');
+    const tip = document.getElementById('tooltip');
+    let current = 'gdp';
+
+    const fmt = (v, d) => (v > 0 && DATASETS[current].zero ? '+' : '') + v.toFixed(d);
+
+    function niceTicks(min, max, count) {
+      const span = max - min || 1;
+      const step = Math.pow(10, Math.floor(Math.log10(span / count)));
+      const err = (span / count) / step;
+      const mult = err >= 7.5 ? 10 : err >= 3.5 ? 5 : err >= 1.5 ? 2 : 1;
+      const s = mult * step;
+      const nmin = Math.floor(min / s) * s, nmax = Math.ceil(max / s) * s;
+      const ticks = [];
+      for (let t = nmin; t <= nmax + 1e-9; t += s) ticks.push(+t.toFixed(6));
+      return ticks;
+    }
+
+    function render(key) {
+      current = key;
+      const ds = DATASETS[key];
+      const data = ds.data;
+      const n = data.length;
+      const years = data.map(d => d[0]);
+      const vals = data.map(d => d[1]);
+      let lo = Math.min(...vals), hi = Math.max(...vals);
+      if (ds.zero) { lo = Math.min(lo, 0); hi = Math.max(hi, 0); }
+      const pad = (hi - lo) * 0.12;
+      const ticks = niceTicks(lo - pad, hi + pad, 5);
+      const minY = ticks[0], maxY = ticks[ticks.length - 1];
+
+      const px = i => padL + i * (W - padL - padR) / (n - 1);
+      const py = v => padT + (maxY - v) / (maxY - minY) * (H - padT - padB);
+
+      let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${ds.title}">`;
+      s += `<defs><linearGradient id="fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${ds.color}" stop-opacity="0.32"/><stop offset="100%" stop-color="${ds.color}" stop-opacity="0"/></linearGradient></defs>`;
+
+      // crisis bands
+      Object.keys(ds.crises).forEach(yr => {
+        const i = years.indexOf(+yr); if (i < 0) return;
+        const x = px(i);
+        s += `<line class="crisis-line" x1="${x}" y1="${padT}" x2="${x}" y2="${H - padB}"/>`;
+        s += `<text class="crisis-label" x="${x}" y="${padT - 8}" text-anchor="middle">${ds.crises[yr]}</text>`;
+      });
+
+      // gridlines + y labels
+      s += `<g class="grid">`;
+      ticks.forEach(t => { s += `<line x1="${padL}" y1="${py(t)}" x2="${W - padR}" y2="${py(t)}"/>`; });
+      s += `</g><g class="axis">`;
+      ticks.forEach(t => { s += `<text x="${padL - 10}" y="${py(t) + 4}" text-anchor="end">${t}${ds.unit === '%' ? '%' : ''}</text>`; });
+      // x labels (every other)
+      years.forEach((yr, i) => { if (i % 2 === 0 || i === n - 1) s += `<text x="${px(i)}" y="${H - padB + 20}" text-anchor="middle">${yr}</text>`; });
+      s += `</g>`;
+
+      if (ds.zero && minY < 0) s += `<g class="zero"><line x1="${padL}" y1="${py(0)}" x2="${W - padR}" y2="${py(0)}"/></g>`;
+
+      // area + line
+      let line = '', area = `M ${px(0)} ${py(minY)} `;
+      data.forEach((d, i) => { const c = `${px(i)} ${py(d[1])}`; line += (i ? 'L ' : 'M ') + c + ' '; area += 'L ' + c + ' '; });
+      area += `L ${px(n - 1)} ${py(minY)} Z`;
+      s += `<path d="${area}" fill="url(#fill)"/>`;
+      s += `<path class="series-line" d="${line}" stroke="${ds.color}"/>`;
+
+      // dots
+      data.forEach((d, i) => {
+        const crisis = ds.crises[d[0]] !== undefined;
+        s += `<circle class="dot" cx="${px(i)}" cy="${py(d[1])}" r="${crisis ? 5.5 : 3.5}" fill="${crisis ? 'var(--critical)' : ds.color}"/>`;
+      });
+
+      // crosshair + hover target
+      s += `<line class="crosshair" id="cross" x1="0" y1="${padT}" x2="0" y2="${H - padB}" style="opacity:0"/>`;
+      s += `<rect id="hit" x="${padL}" y="${padT}" width="${W - padL - padR}" height="${H - padT - padB}" fill="transparent"/>`;
+      s += `</svg>`;
+
+      wrap.querySelector('svg')?.remove();
+      wrap.insertAdjacentHTML('beforeend', s);
+
+      document.getElementById('chartTitle').textContent = ds.title;
+      document.getElementById('chartDesc').textContent = ds.desc;
+      document.getElementById('source').textContent = ds.source;
+
+      buildTable(ds);
+      attachHover(ds, px, py, n);
+    }
+
+    function attachHover(ds, px, py, n) {
+      const svg = wrap.querySelector('svg');
+      const hit = svg.querySelector('#hit');
+      const cross = svg.querySelector('#cross');
+      const setFromEvent = (e) => {
+        const r = svg.getBoundingClientRect();
+        const frac = (e.clientX - r.left) / r.width;           // 0..1 across svg
+        const xSvg = frac * W;
+        let i = Math.round((xSvg - px(0)) / ((px(n - 1) - px(0)) / (n - 1)));
+        i = Math.max(0, Math.min(n - 1, i));
+        const d = ds.data[i];
+        cross.setAttribute('x1', px(i)); cross.setAttribute('x2', px(i)); cross.style.opacity = 1;
+        tip.style.opacity = 1;
+        tip.style.left = (px(i) / W * r.width) + 'px';
+        tip.style.top = (py(d[1]) / H * r.height) + 'px';
+        tip.innerHTML = `<div class="yr">${d[0]}${ds.crises[d[0]] ? ' · ' + ds.crises[d[0]] : ''}</div><div class="val" style="color:${ds.crises[d[0]] ? 'var(--critical)' : ds.color}">${fmt(d[1], ds.decimals)}${ds.unit === '%' ? '%' : ''}${ds.unit !== '%' ? ' ' + ds.unit : ''}</div>`;
+      };
+      hit.addEventListener('mousemove', setFromEvent);
+      hit.addEventListener('mouseleave', () => { cross.style.opacity = 0; tip.style.opacity = 0; });
+    }
+
+    function buildTable(ds) {
+      let t = `<table><thead><tr><th>Year</th><th>${ds.title} (${ds.unit})</th><th>Event</th></tr></thead><tbody>`;
+      ds.data.forEach(d => {
+        const ev = ds.crises[d[0]] || '';
+        t += `<tr class="${ev ? 'is-crisis' : ''}"><td>${d[0]}</td><td>${fmt(d[1], ds.decimals)}</td><td style="text-align:left">${ev}</td></tr>`;
+      });
+      t += `</tbody></table>`;
+      document.getElementById('dataTable').innerHTML = t;
+    }
+
+    /* tabs */
+    document.getElementById('tabs').addEventListener('click', e => {
+      const btn = e.target.closest('.tab'); if (!btn) return;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.key);
+    });
+
+    /* chart / table toggle */
+    const vChart = document.getElementById('viewChart'), vTable = document.getElementById('viewTable');
+    vChart.addEventListener('click', () => { vChart.classList.add('on'); vTable.classList.remove('on'); wrap.style.display = ''; document.getElementById('dataTable').classList.remove('show'); });
+    vTable.addEventListener('click', () => { vTable.classList.add('on'); vChart.classList.remove('on'); wrap.style.display = 'none'; document.getElementById('dataTable').classList.add('show'); });
+
+    render('gdp');
+  </script>
+</body>
+</html>
