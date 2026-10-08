@@ -825,16 +825,16 @@
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">Gallery</span>
-        <h2>Moments from the studio.</h2>
-        <p>Drop your photos into <code>assets/photos/</code> as <code>photo-1.jpg</code> … <code>photo-6.jpg</code> and they replace the animated tiles automatically.</p>
+        <h2>The ARYX brand system.</h2>
+        <p>Logo, layout, type, color and launch — the pieces every project gets. Have your own photos? Drop them in <code>assets/photos/</code> as <code>photo-1.jpg</code> … <code>photo-6.jpg</code> and they replace these automatically.</p>
       </div>
       <div class="gallery">
-        <figure class="shot s1 clip" data-art="a1"><div class="art"></div><img src="assets/photos/photo-1.jpg" alt="ARYX studio — brand identity work" loading="lazy"><figcaption><b>Brand Identity</b><span>Logo systems &amp; guidelines</span></figcaption></figure>
-        <figure class="shot s2 clip" data-art="a2"><div class="art"></div><img src="assets/photos/photo-2.jpg" alt="Website design on screen" loading="lazy"><figcaption><b>Web Design</b><span>Fast, responsive builds</span></figcaption></figure>
-        <figure class="shot s3 clip" data-art="a3"><div class="art"></div><img src="assets/photos/photo-3.jpg" alt="Sketches and wireframes" loading="lazy"><figcaption><b>Sketch to Screen</b><span>Wireframes &amp; concepts</span></figcaption></figure>
-        <figure class="shot s4 clip" data-art="a4"><div class="art"></div><img src="assets/photos/photo-4.jpg" alt="Desk setup" loading="lazy"><figcaption><b>The Workspace</b><span>Where it gets made</span></figcaption></figure>
-        <figure class="shot s5 clip" data-art="a5"><div class="art"></div><img src="assets/photos/photo-5.jpg" alt="Color and type exploration" loading="lazy"><figcaption><b>Color &amp; Type</b><span>Palettes that hold together</span></figcaption></figure>
-        <figure class="shot s6 clip" data-art="a6"><div class="art"></div><img src="assets/photos/photo-6.jpg" alt="Launch day" loading="lazy"><figcaption><b>Launch Day</b><span>Shipping it live</span></figcaption></figure>
+        <figure class="shot s1 clip" data-art="a1"><div class="art"></div><img src="assets/photos/photo-1.jpg" data-fallback="assets/works/work-1.svg" alt="ARYX logo lockups in mono, vivid and light"><figcaption><b>Logo Lockups</b><span>Mono, vivid &amp; light versions</span></figcaption></figure>
+        <figure class="shot s2 clip" data-art="a2"><div class="art"></div><img src="assets/photos/photo-2.jpg" data-fallback="assets/works/work-2.svg" alt="Website hero layout in a browser frame"><figcaption><b>Web Design</b><span>Fast, responsive builds</span></figcaption></figure>
+        <figure class="shot s3 clip" data-art="a3"><div class="art"></div><img src="assets/photos/photo-3.jpg" data-fallback="assets/works/work-3.svg" alt="Wireframe sketch becoming a polished screen"><figcaption><b>Sketch to Screen</b><span>Wireframes &amp; concepts</span></figcaption></figure>
+        <figure class="shot s4 clip" data-art="a4"><div class="art"></div><img src="assets/photos/photo-4.jpg" data-fallback="assets/works/work-4.svg" alt="Type specimen showing Space Grotesk and Inter"><figcaption><b>Typography</b><span>Type that carries the brand</span></figcaption></figure>
+        <figure class="shot s5 clip" data-art="a5"><div class="art"></div><img src="assets/photos/photo-5.jpg" data-fallback="assets/works/work-5.svg" alt="Brand color system swatches"><figcaption><b>Color System</b><span>Palettes that hold together</span></figcaption></figure>
+        <figure class="shot s6 clip" data-art="a6"><div class="art"></div><img src="assets/photos/photo-6.jpg" data-fallback="assets/works/work-6.svg" alt="Launch card with phone and growth chart"><figcaption><b>Launch Day</b><span>Shipping it live</span></figcaption></figure>
       </div>
     </div>
     <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -1138,8 +1138,16 @@
       fig.style.transitionDelay = (i * 0.08) + 's';
       const img = fig.querySelector('img');
       const ok = () => img.classList.add('loaded');
-      if (img.complete && img.naturalWidth) ok(); else img.addEventListener('load', ok);
-      img.addEventListener('error', () => img.remove());
+      // no photo-N.jpg yet: fall back to the bundled artwork, then to the animated tile
+      const fail = () => {
+        const fb = img.dataset.fallback;
+        if (fb && !img.dataset.triedFallback) { img.dataset.triedFallback = '1'; img.src = fb; }
+        else img.remove();
+      };
+      img.addEventListener('load', ok);
+      img.addEventListener('error', fail);
+      // the request may already have finished before this script ran
+      if (img.complete) { if (img.naturalWidth) ok(); else fail(); }
     });
     // observe the unclipped container: a fully clipped target never intersects
     const galleryEl = document.querySelector('.gallery');

@@ -24,3 +24,6 @@ websites, logos, and brand identity design.
 
 ## Deploy
 Drop `index.html` on any static host — GitHub Pages, Netlify, Vercel, or Cloudflare Pages. For GitHub Pages, enable Pages on this branch in repo settings.
+
+## Gallery images
+Each gallery tile tries `assets/photos/photo-N.jpg` (N = 1–6) first. If that file is missing it falls back to the bundled brand artwork in `assets/works/work-N.svg`, and if that is missing too it shows an animated gradient tile. To use your own photos or Canva exports, save them as `assets/photos/photo-1.jpg` … `photo-6.jpg`. Update the captions in the `.gallery` figures in `index.html` to match.

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#00e5c0"/></linearGradient>
+    <radialGradient id="glow1"><stop offset="0" stop-color="#7c5cff" stop-opacity=".45"/><stop offset="1" stop-color="#7c5cff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow2"><stop offset="0" stop-color="#00e5c0" stop-opacity=".3"/><stop offset="1" stop-color="#00e5c0" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="#0a0a0f"/>
+  <circle cx="260" cy="200" r="420" fill="url(#glow1)"/>
+  <circle cx="1020" cy="760" r="380" fill="url(#glow2)"/>
+  <g transform="translate(130,150)">
+    <rect width="280" height="280" rx="72" fill="url(#g)"/>
+    <g transform="translate(40,40) scale(8)" fill="none" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20 L12 4 L19.5 20"/><path d="M8 14.5 L16 14.5"/></g>
+  </g>
+  <text x="470" y="335" font-size="170" font-weight="700" fill="#f4f4f7" letter-spacing="6">ARYX</text>
+  <text x="476" y="400" font-size="26" fill="#a0a0b0" letter-spacing="4">WEBSITES · LOGOS · IDENTITY</text>
+  <g transform="translate(130,540)">
+    <rect width="300" height="230" rx="28" fill="#16161f" stroke="#ffffff" stroke-opacity=".1"/>
+    <g transform="translate(95,50) scale(5)" fill="none" stroke="#f4f4f7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20 L12 4 L19.5 20"/><path d="M8 14.5 L16 14.5"/></g>
+    <text x="150" y="205" font-size="22" fill="#6c6c7c" text-anchor="middle" letter-spacing="3">MONO</text>
+  </g>
+  <g transform="translate(450,540)">
+    <rect width="300" height="230" rx="28" fill="#16161f" stroke="#ffffff" stroke-opacity=".1"/>
+    <rect x="95" y="38" width="110" height="110" rx="30" fill="url(#g)"/>
+    <g transform="translate(112,55) scale(3)" fill="none" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20 L12 4 L19.5 20"/><path d="M8 14.5 L16 14.5"/></g>
+    <text x="150" y="205" font-size="22" fill="#6c6c7c" text-anchor="middle" letter-spacing="3">VIVID</text>
+  </g>
+  <g transform="translate(770,540)">
+    <rect width="300" height="230" rx="28" fill="#f4f4f7"/>
+    <g transform="translate(95,50) scale(5)" fill="none" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20 L12 4 L19.5 20"/><path d="M8 14.5 L16 14.5"/></g>
+    <text x="150" y="205" font-size="22" fill="#7c7c8c" text-anchor="middle" letter-spacing="3">LIGHT</text>
+  </g>
+</svg>
