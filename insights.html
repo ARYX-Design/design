@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ARYX Insights — The Global Economy in Crisis</title>
   <meta name="description" content="An interactive data story on global economic shocks — world GDP growth, inflation, and public debt through the 2008 and 2020 crises. A data-visualization demo by ARYX." />
+  <link rel="icon" type="image/svg+xml" href="assets/logo/aryx-mark.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -34,8 +35,7 @@
     header { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(14px); background: rgba(10,10,15,0.7); border-bottom: 1px solid var(--border); }
     nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
     .logo { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; display: flex; align-items: center; gap: 10px; }
-    .logo .mark { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; box-shadow: 0 6px 20px rgba(124,92,255,0.4); }
-    .logo .mark svg { width: 64%; height: 64%; }
+    .logo .mark { width: 30px; height: 30px; display: block; filter: drop-shadow(0 4px 12px rgba(124,92,255,0.45)); }
     .nav-links { display: flex; gap: 30px; align-items: center; }
     .nav-links a { color: var(--text-dim); font-size: 0.94rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--text); }
@@ -151,7 +151,7 @@
     <div class="wrap">
       <nav>
         <a href="index.html" class="logo">
-          <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4.5 20 L12 4 L19.5 20" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 14.5 L16 14.5" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+          <img class="mark" src="assets/logo/aryx-mark.svg" alt="" width="30" height="30">
           ARYX
         </a>
         <div class="nav-links">
