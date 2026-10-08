@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ARYX — Digital Creator · Websites, Logos & Brand Design</title>
-  <meta name="description" content="ARYX is a digital creator crafting websites, logos, and brand identities that make small teams look world-class. Let's build something people remember." />
+  <meta name="description" content="ARYX is a digital creator building websites, logos, apps, games and automations — starting from just €19.99." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="ARYX — Websites, Logos & Brand Design" />
@@ -586,6 +586,14 @@
       .clip { clip-path: none !important; }
     }
 
+    /* more services + euro starter pricing */
+    .from-pill { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 8px 16px; border-radius: 999px; font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: #08080c; background: var(--grad); box-shadow: 0 8px 24px rgba(124,92,255,0.35); }
+    .pricing-grid { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .price-card { padding: 32px 26px; }
+    .price-card .price-text { font-size: 2rem; line-height: 1.5; }
+    @media (max-width: 1100px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 680px) { .pricing-grid { grid-template-columns: 1fr; } }
+
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 900px) {
       .services-grid, .process-grid, .pricing-grid { grid-template-columns: 1fr 1fr; }
@@ -650,7 +658,7 @@
     <div class="wrap">
       <div class="hero-badge"><span class="dot"></span> Available for new projects — Sept 2026</div>
       <h1>Websites &amp; logos that make you look <span class="gradient-text">world-class.</span></h1>
-      <p class="lead">I'm ARYX — a digital creator who designs and builds brands from the ground up. Websites, logos, and visual identities that help small teams punch far above their weight.</p>
+      <p class="lead">I'm ARYX — a digital creator who designs and builds brands from the ground up. Websites, logos, apps, games and automation — starting from just €19.99.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Start a project →</a>
         <a href="#work" class="btn btn-ghost">See the work</a>
@@ -666,7 +674,7 @@
   <!-- MARQUEE -->
   <div class="marquee-band">
     <div class="marquee">
-      <span>Brand Identity</span><span>Web Design</span><span>Logo Design</span><span>Webflow &amp; Code</span><span>UI/UX</span><span>Landing Pages</span><span>Brand Identity</span><span>Web Design</span><span>Logo Design</span><span>Webflow &amp; Code</span><span>UI/UX</span><span>Landing Pages</span>
+      <span>Brand Identity</span><span>Web Design</span><span>Logo Design</span><span>Games &amp; Apps</span><span>Automation</span><span>Webflow &amp; Code</span><span>UI/UX</span><span>Landing Pages</span><span>Brand Identity</span><span>Web Design</span><span>Logo Design</span><span>Games &amp; Apps</span><span>Automation</span><span>Webflow &amp; Code</span><span>UI/UX</span><span>Landing Pages</span>
     </div>
   </div>
 
@@ -676,7 +684,8 @@
       <div class="section-head reveal">
         <span class="eyebrow">What I do</span>
         <h2>One creator, everything your brand needs.</h2>
-        <p>From the first sketch of a logo to a live, fast-loading website — I handle the whole stack of your visual presence so you don't have to juggle five freelancers.</p>
+        <p>From the first sketch of a logo to a live website, a custom app, a small game or a workflow that runs itself — one creator, one point of contact, no juggling five freelancers.</p>
+        <span class="from-pill">✦ Starting from just €19.99</span>
       </div>
       <div class="services-grid">
         <div class="service-card reveal">
@@ -707,6 +716,36 @@
             <li>App &amp; dashboard design</li>
             <li>Design systems in Figma</li>
             <li>Prototypes &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">🎮</div>
+          <h3>Game Creation</h3>
+          <p>Playable browser games and prototypes, from a tiny arcade idea to a branded promo game.</p>
+          <ul>
+            <li>Browser &amp; mobile-friendly games</li>
+            <li>Prototypes &amp; game jams</li>
+            <li>Branded mini-games for campaigns</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">📱</div>
+          <h3>App Development</h3>
+          <p>Web apps and tools that solve one problem well — dashboards, trackers, calculators and more.</p>
+          <ul>
+            <li>Web apps &amp; installable PWAs</li>
+            <li>Dashboards &amp; internal tools</li>
+            <li>From idea to working MVP</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">⚡</div>
+          <h3>Automation</h3>
+          <p>Stop doing the same task twice. I connect your tools and build workflows that run on their own.</p>
+          <ul>
+            <li>Forms, emails &amp; spreadsheet flows</li>
+            <li>Bots, scripts &amp; scheduled jobs</li>
+            <li>App-to-app integrations</li>
           </ul>
         </div>
       </div>
@@ -856,13 +895,26 @@
       <div class="section-head reveal">
         <span class="eyebrow">Packages</span>
         <h2>Straightforward pricing.</h2>
-        <p>Fixed-price packages so you know exactly what you're getting. Custom quotes available for bigger builds.</p>
+        <p>Fixed-price packages so you know exactly what you're getting — start small from €19.99, or go big with a full brand and site.</p>
       </div>
       <div class="pricing-grid">
         <div class="price-card reveal">
+          <div class="plan">Starter</div>
+          <div class="plan-desc">Quick wins, fixed price</div>
+          <div class="price"><span>from </span>€19.99</div>
+          <div class="price-note">one small task · ~48 hours</div>
+          <ul>
+            <li>A simple automation or script</li>
+            <li>A basic logo or social asset</li>
+            <li>A small game or app tweak</li>
+            <li>Clear scope, no surprises</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost">Get started</a>
+        </div>
+        <div class="price-card reveal">
           <div class="plan">Logo &amp; Brand</div>
           <div class="plan-desc">A complete identity kit</div>
-          <div class="price">$490<span></span></div>
+          <div class="price">€490</div>
           <div class="price-note">one-time · ~5 days</div>
           <ul>
             <li>Primary logo + variations</li>
@@ -875,7 +927,7 @@
         <div class="price-card featured reveal">
           <div class="plan">Website + Brand</div>
           <div class="plan-desc">The full launch package</div>
-          <div class="price">$1,900<span></span></div>
+          <div class="price">€1,900</div>
           <div class="price-note">one-time · ~2–3 weeks</div>
           <ul>
             <li>Everything in Logo &amp; Brand</li>
@@ -889,7 +941,7 @@
         <div class="price-card reveal">
           <div class="plan">Custom</div>
           <div class="plan-desc">Product, app or ongoing work</div>
-          <div class="price">Let's talk<span></span></div>
+          <div class="price price-text">Let's talk</div>
           <div class="price-note">scoped to your needs</div>
           <ul>
             <li>Web apps &amp; dashboards</li>
@@ -956,6 +1008,8 @@
             <a href="#services">Websites</a>
             <a href="#services">Logo &amp; Identity</a>
             <a href="#services">UI / UX Design</a>
+            <a href="#services">Games &amp; Apps</a>
+            <a href="#services">Automation</a>
           </div>
           <div class="footer-col">
             <h4>Company</h4>
