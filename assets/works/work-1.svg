@@ -9,24 +9,24 @@
   <circle cx="1020" cy="760" r="380" fill="url(#glow2)"/>
   <g transform="translate(130,150)">
     <rect width="280" height="280" rx="72" fill="url(#g)"/>
-    <g transform="translate(40,40) scale(8)" fill="none" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20 L12 4 L19.5 20"/><path d="M8 14.5 L16 14.5"/></g>
+    <g transform="translate(40,40) scale(8)" fill="none" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2 L3 20.5 M12 4.2 L21 20.5 M6.6 14.2 H17.4"/><circle cx="12" cy="4.2" r="2.5" fill="#0a0a0f" stroke="none"/><circle cx="3" cy="20.5" r="2.3" fill="#0a0a0f" stroke="none"/><circle cx="21" cy="20.5" r="2.3" fill="#0a0a0f" stroke="none"/></g>
   </g>
   <text x="470" y="335" font-size="170" font-weight="700" fill="#f4f4f7" letter-spacing="6">ARYX</text>
   <text x="476" y="400" font-size="26" fill="#a0a0b0" letter-spacing="4">WEBSITES · LOGOS · IDENTITY</text>
   <g transform="translate(130,540)">
     <rect width="300" height="230" rx="28" fill="#16161f" stroke="#ffffff" stroke-opacity=".1"/>
-    <g transform="translate(95,50) scale(5)" fill="none" stroke="#f4f4f7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20 L12 4 L19.5 20"/><path d="M8 14.5 L16 14.5"/></g>
+    <g transform="translate(95,50) scale(5)" fill="none" stroke="#f4f4f7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2 L3 20.5 M12 4.2 L21 20.5 M6.6 14.2 H17.4"/><circle cx="12" cy="4.2" r="2.5" fill="#f4f4f7" stroke="none"/><circle cx="3" cy="20.5" r="2.3" fill="#f4f4f7" stroke="none"/><circle cx="21" cy="20.5" r="2.3" fill="#f4f4f7" stroke="none"/></g>
     <text x="150" y="205" font-size="22" fill="#6c6c7c" text-anchor="middle" letter-spacing="3">MONO</text>
   </g>
   <g transform="translate(450,540)">
     <rect width="300" height="230" rx="28" fill="#16161f" stroke="#ffffff" stroke-opacity=".1"/>
     <rect x="95" y="38" width="110" height="110" rx="30" fill="url(#g)"/>
-    <g transform="translate(112,55) scale(3)" fill="none" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20 L12 4 L19.5 20"/><path d="M8 14.5 L16 14.5"/></g>
+    <g transform="translate(112,55) scale(3)" fill="none" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2 L3 20.5 M12 4.2 L21 20.5 M6.6 14.2 H17.4"/><circle cx="12" cy="4.2" r="2.5" fill="#0a0a0f" stroke="none"/><circle cx="3" cy="20.5" r="2.3" fill="#0a0a0f" stroke="none"/><circle cx="21" cy="20.5" r="2.3" fill="#0a0a0f" stroke="none"/></g>
     <text x="150" y="205" font-size="22" fill="#6c6c7c" text-anchor="middle" letter-spacing="3">VIVID</text>
   </g>
   <g transform="translate(770,540)">
     <rect width="300" height="230" rx="28" fill="#f4f4f7"/>
-    <g transform="translate(95,50) scale(5)" fill="none" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20 L12 4 L19.5 20"/><path d="M8 14.5 L16 14.5"/></g>
+    <g transform="translate(95,50) scale(5)" fill="none" stroke="#0a0a0f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2 L3 20.5 M12 4.2 L21 20.5 M6.6 14.2 H17.4"/><circle cx="12" cy="4.2" r="2.5" fill="#0a0a0f" stroke="none"/><circle cx="3" cy="20.5" r="2.3" fill="#0a0a0f" stroke="none"/><circle cx="21" cy="20.5" r="2.3" fill="#0a0a0f" stroke="none"/></g>
     <text x="150" y="205" font-size="22" fill="#7c7c8c" text-anchor="middle" letter-spacing="3">LIGHT</text>
   </g>
 </svg>
