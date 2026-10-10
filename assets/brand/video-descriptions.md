@@ -85,3 +85,40 @@ Message ARYX: aryx.design@gmail.com
 Spending hours on research? A research agent gathers sources, summarises what matters and delivers a clean report.
 Message ARYX: aryx.design@gmail.com
 #ARYX #aiagents #aitools #research #productivity #fyp
+
+---
+
+# Viral-style videos (hook-first, 9:16)
+
+Each opens on the hook with no logo intro, ends by repeating the hook so it loops, and carries a "send this to someone who…" prompt.
+Post the cover from `assets/video/covers/`. Pin the first comment shown below.
+
+### aryx-viral-inbox-9x16
+**On-screen hook:** POV: you still answer every email by hand.
+**Caption:** POV: you still answer every email by hand 😩 An AI agent can read the email, write the reply, and leave you in control. Simple automations start from just €19.99. Send this to someone who lives in their inbox.
+**Pinned comment:** What's the one task you'd love to never do again? 👇
+#ARYX #aiagents #aiautomation #productivity #emailmanagement #fyp #viral
+
+### aryx-viral-3things-9x16
+**On-screen hook:** 3 things you should never do by hand again.
+**Caption:** 3 things you should never do by hand again: copying data between apps, answering the same questions, chasing leads. An AI agent can do all three. Simple automations from €19.99. Save this for later.
+**Pinned comment:** Which of the three do you still do by hand? 1, 2 or 3?
+#ARYX #aiagents #automation #workflowautomation #businessautomation #fyp #viral
+
+### aryx-viral-sleep-9x16
+**On-screen hook:** What is your business doing while you sleep?
+**Caption:** What is your business doing while you sleep? An example of what an AI agent can handle overnight: replying to a new lead, answering a customer, preparing a report. Simple automations from just €19.99.
+**Pinned comment:** Would you trust an agent with your night shift? 🌙
+#ARYX #aiagents #agenticai #aiautomation #futureofwork #fyp #viral
+
+### aryx-viral-3sec-9x16
+**On-screen hook:** Does your website pass the 3-second test?
+**Caption:** The 3-second website test: 1) Can people tell what you do? 2) Is there one clear button? 3) Does it load fast on a phone? Miss one and it gets harder to get customers. Send this to someone with a slow website.
+**Pinned comment:** How many did your site pass: 0, 1, 2 or 3?
+#ARYX #webdesign #websitedesign #smallbusiness #uiux #fyp #viral
+
+### aryx-viral-copypaste-9x16
+**On-screen hook:** Copy-pasting between apps all day?
+**Caption:** Copy. Paste. Copy. Paste. Stop. One automation can do that in the background. Simple automations from just €19.99. Send this to someone who copy-pastes all day.
+**Pinned comment:** What do you copy-paste the most? 👇
+#ARYX #automation #nocode #productivity #aitools #fyp #viral
