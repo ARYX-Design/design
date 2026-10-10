@@ -1,29 +1,31 @@
-# ARYX — Digital Creator Landing Page
+# ARYX — Digital Creator Site
 
-A single-file, responsive landing page for **ARYX**, a digital creator offering
-websites, logos, and brand identity design.
+Landing page for **ARYX**: websites, logos, apps, games, AI agents and automation (from €19.99).
 
-## What's inside
-- **`index.html`** — the entire site. No build step, no dependencies (fonts load from Google Fonts). Just open it or host it anywhere.
+Built with **React 19 + Vite + Tailwind CSS 4**, with animated components from
+[Magic UI](https://github.com/magicuidesign/magicui) (MIT). Magic UI is copy-paste, so the components used
+live in `src/components/magicui/` and can be edited freely.
 
-## Sections
-1. **Hero** — headline, positioning, and quick stats
-2. **Services** — Websites · Logo & Identity · UI/UX
-3. **Work** — portfolio tiles (placeholders — swap in real case studies)
-4. **Process** — 4-step how-it-works
-5. **Pricing** — three packages
-6. **About** — personal intro + tool tags
-7. **Contact / CTA** — mailto link to `aryx.design@gmail.com`
-8. **Footer** — nav, links, socials
+## Run it
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # outputs dist/
+npm run typecheck
+```
+
+## Layout
+- `src/` — the React site (`components/site/*` sections, `components/magicui/*` copied Magic UI components, `data/site.ts` for all copy, prices and video lists, `art/` for the animated SVG service visuals).
+- `assets/` — logo, brand docs (`brand/`), works artwork, 23+ promo/explainer/viral videos. Source of truth for media.
+- `scripts/prepare-public.mjs` — runs before `dev`/`build` and copies only what the site needs (logo, works, posters, 3 videos, `insights.html`, `classic.html`) into `public/` (git-ignored) to keep the deploy small.
+- `legacy/classic.html` — the previous hand-written single-file design, served at `/classic.html`.
+- `insights.html` — the static global-economy Insights page, served at `/insights.html`.
 
 ## Make it yours
-- **Portfolio:** the four `#work` tiles use built-in CSS/SVG device mockups (browser, logo board, dashboard, phone) so the page is fully self-contained. To show real work, replace the `.work-preview` contents of a tile with an image: `<div class="work-preview"><img src="assets/your-shot.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>` and update the `.work-meta` title/tag.
-- **Copy & stats:** the hero stats (120+, 7 days, 98%) and all prices (Starter from €19.99, €490, €1,900) are sample numbers; the Starter bullet points are suggestions — edit them to match what you actually offer.
-- **Colors:** tweak the `--accent`, `--accent-2`, `--accent-3` and `--grad` variables at the top of the `<style>` block.
-- **Social links:** the footer icons currently point to `#` — add your real profile URLs.
+- **Copy, prices, links:** edit `src/data/site.ts`. The €490 / €1,900 prices and the About text are sample values; only "from €19.99" comes from the brief.
+- **Photos:** save your own images as `assets/photos/photo-1.jpg` … `photo-6.jpg`. They replace the bundled artwork in the Work grid automatically.
+- **Videos:** the Watch section uses 3 videos listed in `videos` (`src/data/site.ts`) and copied by `scripts/prepare-public.mjs`.
+- **Colors:** brand tokens are CSS variables at the top of `src/index.css`.
 
-## Deploy
-Drop `index.html` on any static host — GitHub Pages, Netlify, Vercel, or Cloudflare Pages. For GitHub Pages, enable Pages on this branch in repo settings.
-
-## Gallery images
-Each gallery tile tries `assets/photos/photo-N.jpg` (N = 1–6) first. If that file is missing it falls back to the bundled brand artwork in `assets/works/work-N.svg`, and if that is missing too it shows an animated gradient tile. To use your own photos or Canva exports, save them as `assets/photos/photo-1.jpg` … `photo-6.jpg`. Update the captions in the `.gallery` figures in `index.html` to match.
+## Deploy (Vercel)
+`vercel.json` sets framework `vite`, `npm ci`, `npm run build`, output `dist`. Connect the repo in Vercel and it builds on every push.
