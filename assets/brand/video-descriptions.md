@@ -163,3 +163,12 @@ Before posting, glance at the sources listed under each video. Every fact below 
 **Caption:** You've probably used AI today: spam filters, maps and traffic, autocomplete, photo search. Most of it works so well you never notice. Now AI is moving from tools you use to agents that act for you.
 **Pinned comment:** How many of these did you use today? 1, 2, 3 or all 4?
 #aifacts #artificialintelligence #aiagents #everydayai #techfacts #learnontiktok #fyp
+
+## Free-value video (built for saves and shares)
+
+### aryx-viral-prompts-9x16
+**On-screen hook:** Steal these 3 AI prompts. Free.
+**Caption:** 3 free AI prompts you can copy and paste today. 1) Emails: "Summarize this email in 2 lines, then write a polite reply." 2) Messy notes: "Turn these notes into a clear checklist, most important first." 3) Your offer: "Act as my customer. Ask me 5 tough questions about my offer." Save this and send it to a friend who uses AI.
+**Pinned comment:** Which prompt are you trying first? 1, 2 or 3? 👇 (Reply and I'll send a longer version.)
+**Why this format:** tutorials people can copy get saved and shared more than product pitches, and saves and shares are what the platforms push. The prompts are generic and free; no claims about results.
+#aitips #chatgpt #aiprompts #productivity #ARYX #learnontiktok #fyp
