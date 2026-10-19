@@ -172,3 +172,26 @@ Before posting, glance at the sources listed under each video. Every fact below 
 **Pinned comment:** Which prompt are you trying first? 1, 2 or 3? 👇 (Reply and I'll send a longer version.)
 **Why this format:** tutorials people can copy get saved and shared more than product pitches, and saves and shares are what the platforms push. The prompts are generic and free; no claims about results.
 #aitips #chatgpt #aiprompts #productivity #ARYX #learnontiktok #fyp
+
+## AI-niche stories (built for comments and shares)
+
+### aryx-ai-please-9x16
+**On-screen hook:** Saying please to ChatGPT costs millions?
+**Caption:** Someone asked OpenAI's CEO how much people saying "please" and "thank you" to ChatGPT costs in electricity. Sam Altman's reply: "tens of millions of dollars well spent, you never know." It was a half-joking guess, not a real bill. And in one survey, 67% of US users said they're polite to AI anyway. Are you?
+**Pinned comment:** Be honest: do you say please to AI? YES or NO 👇
+**Sources:** Sam Altman on X, 16 April 2025 (widely reported, e.g. Business Today, Quartz); Future survey, December 2024 (67% of US users polite to AI assistants). The "tens of millions" figure was a casual reply, which the video says.
+#chatgpt #samaltman #openai #aifacts #artificialintelligence #ARYX #fyp
+
+### aryx-ai-lawyer-9x16
+**On-screen hook:** A lawyer used ChatGPT in court. It went badly.
+**Caption:** New York, 2023: lawyers filed a brief citing six court cases. None of them existed; ChatGPT had made them up. Judge P. Kevin Castel fined the lawyers and their firm $5,000. Lesson: AI can sound sure and still be wrong. Always check the source.
+**Pinned comment:** Would you trust AI with something this important? 👇
+**Sources:** Mata v. Avianca, S.D.N.Y., sanctions order June 2023 (Bloomberg Law: "Phony ChatGPT Brief Leads to $5,000 Fine for NY Lawyers"). The fine was against the lawyers and their firm, Levidow, Levidow & Oberman.
+#chatgpt #aifails #lawyer #aihallucination #aifacts #ARYX #fyp
+
+### aryx-ai-stepbystep-9x16
+**On-screen hook:** 5 words that make AI smarter.
+**Caption:** Add "Let's think step by step." In a 2022 study, that one line raised an AI's score on math word problems from about 18% to 79%. It works because the AI writes out its reasoning before answering. Many newer models already reason on their own, but on tricky questions it can still help. Save this for your next prompt.
+**Pinned comment:** Try it on your next tricky question and tell me if the answer changed 👇
+**Sources:** Kojima et al., "Large Language Models are Zero-Shot Reasoners" (NeurIPS 2022, arXiv 2205.11916): MultiArith 17.7% → 78.7% with text-davinci-002. The result is for that model and benchmark; modern models differ.
+#aitips #chatgpt #promptengineering #aiprompts #productivity #ARYX #fyp
