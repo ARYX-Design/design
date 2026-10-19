@@ -195,3 +195,47 @@ Before posting, glance at the sources listed under each video. Every fact below 
 **Pinned comment:** Try it on your next tricky question and tell me if the answer changed 👇
 **Sources:** Kojima et al., "Large Language Models are Zero-Shot Reasoners" (NeurIPS 2022, arXiv 2205.11916): MultiArith 17.7% → 78.7% with text-davinci-002. The result is for that model and benchmark; modern models differ.
 #aitips #chatgpt #promptengineering #aiprompts #productivity #ARYX #fyp
+
+## AI × finance & crypto (true stories, no financial advice)
+
+### aryx-fin-flashcrash-9x16
+**On-screen hook:** The market crashed and recovered in ~20 minutes.
+**Caption:** May 6, 2010: the Dow fell nearly 1,000 points in minutes, then recovered most of it within about 20 minutes. Regulators traced it to one huge automated sell order hitting an already stressed market, with trading algorithms reacting to each other at machine speed. Today, circuit breakers pause trading when prices move too fast.
+**Pinned comment:** Would you trust a bot with your money? 👇
+**Sources:** SEC & CFTC joint report "Findings Regarding the Market Events of May 6, 2010" (Sept 2010): a sell program of 75,000 E-mini contracts (~$4.1B). Not financial advice.
+#flashcrash #stockmarket #algotrading #aifinance #fintech #ARYX #fyp
+
+### aryx-fin-knight-9x16
+**On-screen hook:** A trading bot lost $440M in 45 minutes.
+**Caption:** August 1, 2012: Knight Capital installed new trading software. At the opening bell it flooded the market with orders nobody meant to send. In about 45 minutes the firm lost around $440 million, nearly collapsed, and needed a $400M rescue investment within days. Automation is powerful. Test it before it touches money.
+**Pinned comment:** Worst software bug you've ever seen? 👇
+**Sources:** Knight Capital SEC filings (8-K and 10-Q, August 2012): ~$440M pre-tax loss and $400M investment; the "45 minutes" figure is from press coverage.
+#knightcapital #tradingbot #softwarebug #fintech #automation #ARYX #fyp
+
+### aryx-fin-deepfake-9x16
+**On-screen hook:** A video call with your boss. Everyone on it was fake.
+**Caption:** Hong Kong, 2024: a finance worker joined a video call with the company's "CFO" and colleagues. They were AI deepfakes built from public video and audio. The worker sent HK$200M (about US$25M) in 15 transfers. The company was Arup. Big payment request? Hang up and verify through a number you already know.
+**Pinned comment:** Would you have noticed? 👇
+**Sources:** Hong Kong police via RTHK and SCMP (Feb 2024); company named by the Financial Times; Arup statement to Fortune (May 2024).
+#deepfake #cybersecurity #scamalert #aifinance #ai #ARYX #fyp
+
+### aryx-crypto-truthterminal-9x16
+**On-screen hook:** A billionaire gave an AI $50,000 in Bitcoin.
+**Caption:** Truth Terminal is an AI account on X made by Andy Ayrey. In July 2024, investor Marc Andreessen sent it a $50K "research grant" in bitcoin. In October 2024, someone launched a meme coin (GOAT) the AI kept posting about, and it passed $200M in market value within days. Andreessen says he wasn't involved in the coin. Meme coins are extremely risky. This is a story, not financial advice.
+**Pinned comment:** Should an AI be allowed to own money? YES or NO 👇
+**Sources:** Decrypt, "AI Bot Pumps Meme Coin 7,000% Following $50,000 Gift from Billionaire Marc Andreessen" (Oct 2024); The Defiant. Market-cap figures vary by date.
+#crypto #aiagents #truthterminal #memecoin #bitcoin #ARYX #fyp
+
+### aryx-crypto-agentpay-9x16
+**On-screen hook:** AI agents can now pay by themselves.
+**Caption:** You know error 404? There's also 402: "Payment Required", reserved in the web's rules for decades and rarely used. In May 2025, Coinbase launched x402, which uses it for instant stablecoin payments. An agent asks for data, gets a price, pays a few cents, and gets the data, with no human in the loop. Would you let an AI spend your money?
+**Pinned comment:** Would you give an AI agent a budget? How much? 👇
+**Sources:** Coinbase Developer Platform, "Introducing x402: a new standard for internet-native payments" (May 2025).
+#aiagents #crypto #stablecoins #x402 #fintech #ARYX #fyp
+
+### aryx-crypto-giveaway-9x16
+**On-screen hook:** Elon is NOT giving away Bitcoin.
+**Caption:** Scammers stream AI deepfakes of Elon Musk promising to double any crypto you send. During one SpaceX launch, over 35 YouTube channels streamed the same fake AI voice. Whatever you send goes straight to the scammer's wallet. Red flags: "send first", a QR code on screen, a countdown timer.
+**Pinned comment:** Tag someone who needs to see this 👇
+**Sources:** Avast research on deepfake Musk livestreams during a SpaceX Starship launch (2024, reported by Cointelegraph); Bitdefender on hijacked YouTube channels.
+#cryptoscam #deepfake #bitcoin #scamalert #crypto #ARYX #fyp
