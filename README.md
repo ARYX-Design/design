@@ -23,7 +23,8 @@ npm run typecheck
 
 ## Make it yours
 - **Copy, prices, links:** edit `src/data/site.ts`. The €490 / €1,900 prices and the About text are sample values; only "from €19.99" comes from the brief.
-- **Photos:** save your own images as `assets/photos/photo-1.jpg` … `photo-6.jpg`. They replace the bundled artwork in the Work grid automatically.
+- **Photos:** save your own images as `assets/photos/photo-1.jpg` … `photo-4.jpg` (4:3 works best). They replace the bundled studio artwork (`assets/works/studio-1..4.svg`) in the Work grid automatically.
+- **Look:** light editorial style: paper background, Instrument Serif headings, Inter body, one deep-teal accent (`--accent` in `src/index.css`).
 - **Videos:** the Watch section uses 3 videos listed in `videos` (`src/data/site.ts`) and copied by `scripts/prepare-public.mjs`.
 - **Colors:** brand tokens are CSS variables at the top of `src/index.css`.
 

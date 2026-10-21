@@ -3,15 +3,12 @@ export const MAILTO = `mailto:${EMAIL}?subject=New%20project%20inquiry`
 
 export const navLinks = [
   { label: "Services", href: "#services" },
-  { label: "Watch", href: "#watch" },
   { label: "Work", href: "#work" },
   { label: "Process", href: "#process" },
   { label: "Pricing", href: "#pricing" },
   { label: "About", href: "#about" },
   { label: "Insights", href: "/insights.html" },
 ]
-
-export const rotatingWords = ["websites", "logos", "AI agents", "apps", "games", "automations"]
 
 export const marqueeItems = [
   "Websites", "Logo & Identity", "AI Agents", "AI Chatbots", "AI Workflows", "Automation",
@@ -34,7 +31,7 @@ export const services: Service[] = [
     bullets: ["Landing pages & full sites", "Webflow, Framer or hand-coded", "SEO & performance built in"], className: "" },
   { key: "logo", name: "Logo & Identity", description: "Memorable logos and complete brand systems that set you apart.",
     bullets: ["Logo suite & variations", "Color, type & guidelines", "Social & print-ready assets"], className: "" },
-  { key: "automation", name: "Automation", description: "Stop doing the same task twice. I connect your tools and build workflows that run on their own.",
+  { key: "automation", name: "Automation", description: "Stop doing the same task twice. We connect your tools and build workflows that run on their own.",
     bullets: ["Forms, emails & spreadsheet flows", "Bots, scripts & scheduled jobs", "App-to-app integrations"], className: "lg:col-span-2" },
   { key: "chatbots", name: "AI Chatbots", description: "Support and sales assistants trained on your own content, live on your site.",
     bullets: ["Website & customer support bots", "Answers from your knowledge base", "Hand-off to a human when needed"], className: "" },
@@ -58,19 +55,23 @@ export const videos = [
 ]
 
 export const gallery = [
-  { n: 1, title: "Logo Lockups", text: "Mono, vivid & light versions", alt: "ARYX logo lockups in mono, vivid and light", className: "sm:col-span-2 sm:row-span-2" },
-  { n: 2, title: "Web Design", text: "Fast, responsive builds", alt: "Website hero layout in a browser frame", className: "sm:col-span-2" },
-  { n: 3, title: "Sketch to Screen", text: "Wireframes & concepts", alt: "Wireframe sketch becoming a polished screen", className: "sm:col-span-2" },
-  { n: 4, title: "Typography", text: "Type that carries the brand", alt: "Type specimen showing Space Grotesk and Inter", className: "" },
-  { n: 5, title: "Color System", text: "Palettes that hold together", alt: "Brand color system swatches", className: "" },
-  { n: 6, title: "Launch Day", text: "Shipping it live", alt: "Launch card with phone and growth chart", className: "" },
+  { n: 1, title: "Brand identity", text: "Logo, stationery and a small brand system", alt: "ARYX letterhead and business cards in black and off-white" },
+  { n: 2, title: "Marketing website", text: "Responsive site with a clear call to action", alt: "Website layout with a serif headline in a browser window" },
+  { n: 3, title: "Dashboard & app", text: "Web app with a matching mobile view", alt: "Analytics dashboard with charts next to a phone screen" },
+  { n: 4, title: "AI support assistant", text: "Answers from your own help pages, hands off to a person", alt: "Chat window of an AI support assistant citing a help-centre source" },
+]
+
+export const facts = [
+  { k: "9", v: "services under one roof" },
+  { k: "€19.99", v: "smallest fixed-price task" },
+  { k: "1", v: "point of contact, start to finish" },
 ]
 
 export const process = [
-  { n: "01", title: "Discover", text: "We talk goals, audience, and vibe. I learn what makes your brand tick." },
+  { n: "01", title: "Discover", text: "We talk goals, audience and tone, and learn what makes your brand tick." },
   { n: "02", title: "Design", text: "Concepts, drafts, and iterations until it feels unmistakably yours." },
-  { n: "03", title: "Build", text: "I develop the site or finalize your assets, pixel-perfect and fast." },
-  { n: "04", title: "Launch", text: "We ship it live, and I hand off everything you need to grow." },
+  { n: "03", title: "Build", text: "We build the site or finalize your assets, pixel-perfect and fast." },
+  { n: "04", title: "Launch", text: "We ship it live and hand over everything you need to grow." },
 ]
 
 export const pricing = [

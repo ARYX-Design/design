@@ -1,4 +1,3 @@
-import { ScrollProgress } from "@/components/magicui/scroll-progress"
 import { About } from "@/components/site/About"
 import { Cta } from "@/components/site/Cta"
 import { Footer } from "@/components/site/Footer"
@@ -14,14 +13,13 @@ import { Work } from "@/components/site/Work"
 export default function App() {
   return (
     <>
-      <ScrollProgress className="h-[3px] from-violet via-teal to-teal" />
       <Nav />
       <main>
         <Hero />
         <Strip />
         <Services />
-        <Watch />
         <Work />
+        <Watch />
         <Process />
         <Pricing />
         <About />

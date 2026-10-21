@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils"
 
-export function Logo({ className, text = true }: { className?: string; text?: boolean }) {
+export function Logo({ className, light = false }: { className?: string; light?: boolean }) {
   return (
-    <a href="#top" className={cn("flex items-center gap-2.5 font-display text-xl font-bold tracking-wide", className)} aria-label="ARYX home">
-      <img src="/assets/logo/aryx-mark.svg" alt="" width={30} height={30} className="size-[30px] drop-shadow-[0_4px_12px_rgba(124,92,255,0.5)]" />
-      {text && <span>ARYX</span>}
+    <a href="#top" className={cn("flex items-center gap-2.5", className)} aria-label="ARYX home">
+      <img src={light ? "/assets/logo/aryx-mark-mono-white.svg" : "/assets/logo/aryx-mark-mono-black.svg"} alt="" width={26} height={26} className="size-[26px]" />
+      <span className="text-[15px] font-semibold tracking-[0.22em]">ARYX</span>
     </a>
   )
 }
