@@ -1,28 +1,38 @@
 import { services } from "@/data/site"
+import { cn } from "@/lib/utils"
+import { Iso } from "./Iso"
+import { TiltCard } from "./Tilt"
 import { Reveal, Section, SectionHead } from "./ui"
 
 export function Services() {
   return (
     <Section id="services">
-      <SectionHead index="01" eyebrow="Services" title={<>Everything a small brand needs, <em className="text-accent">under one roof.</em></>}>
-        From the first logo sketch to a live website, an app or an AI agent that takes work off your plate.
+      <SectionHead title="Everything a growing brand needs, from one studio.">
+        Identity, websites, apps and AI that works for you, designed and built together so it all fits.
       </SectionHead>
-      <ul className="border-t border-border">
-        {services.map((s, i) => (
-          <Reveal key={s.key} delay={Math.min(i, 4) * 0.03}>
-            <li className="group grid gap-4 border-b border-border py-8 transition-colors hover:bg-card/70 md:grid-cols-12 md:gap-8 md:px-4">
-              <span className="text-sm text-muted-foreground tabular-nums md:col-span-1 md:pt-2">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="text-3xl leading-tight md:col-span-4">{s.name}</h3>
-              <div className="md:col-span-7">
-                <p className="leading-relaxed text-foreground/80">{s.description}</p>
-                <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5 text-sm text-muted-foreground">
-                  {s.bullets.map((b) => <li key={b} className="before:mr-2 before:text-accent before:content-['—']">{b}</li>)}
-                </ul>
-              </div>
-            </li>
-          </Reveal>
-        ))}
-      </ul>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((s, i) => {
+          const wide = s.className.includes("col-span-2")
+          return (
+            <Reveal key={s.key} delay={(i % 3) * 0.05} className={cn(wide && "lg:col-span-2")}>
+              <TiltCard className="shadow-depth rounded-[1.6rem] bg-card" max={wide ? 5 : 8}>
+                <div className={cn("flex h-full flex-col gap-6 p-7", wide && "lg:flex-row lg:items-center lg:gap-10")}>
+                  <div className={cn("lift grid h-40 place-items-center rounded-2xl bg-gradient-to-b from-[#f2f4f9] to-[#e4e9f2]", wide && "lg:h-52 lg:w-[42%] lg:flex-none")}>
+                    <Iso k={s.key} className="h-32 w-auto drop-shadow-[0_14px_14px_rgba(26,36,64,.18)] transition-transform duration-500 group-hover:-translate-y-2 lg:h-36" />
+                  </div>
+                  <div className="lift">
+                    <h3 className="text-2xl">{s.name}</h3>
+                    <p className="mt-2 leading-relaxed text-muted-foreground">{s.description}</p>
+                    <ul className="mt-4 space-y-1.5 text-sm text-foreground/80">
+                      {s.bullets.map((b) => <li key={b} className="flex gap-2"><span className="mt-2 size-1.5 flex-none rounded-full bg-primary" />{b}</li>)}
+                    </ul>
+                  </div>
+                </div>
+              </TiltCard>
+            </Reveal>
+          )
+        })}
+      </div>
     </Section>
   )
 }

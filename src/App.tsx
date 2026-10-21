@@ -6,7 +6,6 @@ import { Nav } from "@/components/site/Nav"
 import { Pricing } from "@/components/site/Pricing"
 import { Process } from "@/components/site/Process"
 import { Services } from "@/components/site/Services"
-import { Strip } from "@/components/site/Strip"
 import { Watch } from "@/components/site/Watch"
 import { Work } from "@/components/site/Work"
 
@@ -16,7 +15,6 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <Strip />
         <Services />
         <Work />
         <Watch />

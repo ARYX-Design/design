@@ -7,5 +7,5 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: { alias: { "@": path.resolve(import.meta.dirname, "src") } },
   // Vite's own hashed bundle goes to /_app so it never collides with /assets (logos, videos, works)
-  build: { assetsDir: "_app", chunkSizeWarningLimit: 700 },
+  build: { assetsDir: "_app", chunkSizeWarningLimit: 1100 },
 })

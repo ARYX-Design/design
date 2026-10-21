@@ -1,50 +1,44 @@
-import { facts, MAILTO } from "@/data/site"
-import { ArrowIcon, Button, Reveal } from "./ui"
+import { lazy, Suspense } from "react"
+import { motion, useReducedMotion } from "motion/react"
+import { MAILTO } from "@/data/site"
+import { Button } from "./ui"
+
+const Sculpture = lazy(() => import("@/components/three/Sculpture"))
+
+const lines = ["Design and AI,", "connected."]
 
 export function Hero() {
+  const reduce = useReducedMotion()
+  const rise = (i: number) => reduce ? {} : { initial: { y: "110%", rotateX: -55 }, animate: { y: "0%", rotateX: 0 }, transition: { duration: 1.1, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] as const } }
   return (
-    <section id="top" className="mx-auto max-w-6xl px-6 pt-36 pb-20 sm:pt-44">
-      <Reveal>
-        <p className="flex items-center gap-2.5 text-sm text-muted-foreground">
-          <span className="size-1.5 rounded-full bg-accent" />
-          Design & AI studio · Taking on new projects
-        </p>
-      </Reveal>
-      <div className="mt-8 grid items-end gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-7">
-          <Reveal delay={0.05}>
-            <h1 className="text-[clamp(2.9rem,6vw,5.4rem)] leading-[1.0]">
-              Brands, websites and AI tools that <em className="text-accent">actually work.</em>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              ARYX designs and builds identities, websites, apps and AI automations for small businesses and founders. One studio, one point of contact, fixed prices.
+    <section id="top" className="relative overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_55%_at_75%_40%,#ffffff_0%,rgba(255,255,255,0)_70%),radial-gradient(40%_40%_at_90%_80%,rgba(46,75,255,.12),transparent_70%),radial-gradient(35%_35%_at_60%_10%,rgba(255,138,76,.12),transparent_70%)]" />
+      <div className="relative mx-auto grid min-h-[100svh] max-w-6xl items-center gap-4 px-6 pt-28 pb-16 lg:grid-cols-12 lg:pt-20">
+        <div className="relative z-10 lg:col-span-7">
+          <h1 className="text-[clamp(3.2rem,7.2vw,6.6rem)] leading-[0.92] [perspective:800px]">
+            {lines.map((l, i) => (
+              <span key={l} className="block overflow-y-clip pb-[0.08em]">
+                <motion.span className="block origin-bottom" {...rise(i)}>{l}</motion.span>
+              </span>
+            ))}
+          </h1>
+          <motion.div initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.55 }}>
+            <p className="mt-8 max-w-md text-lg leading-relaxed text-muted-foreground">
+              ARYX is a studio for brand identity, websites, apps and AI agents. Fixed prices from €19.99, and one point of contact from first sketch to launch.
             </p>
-          </Reveal>
-          <Reveal delay={0.18}>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Button href={MAILTO}>Start a project <ArrowIcon /></Button>
-              <Button href="#work" variant="outline">See the work</Button>
+              <Button href={MAILTO}>Start a project</Button>
+              <Button href="#work" variant="ghost">See our work</Button>
             </div>
-          </Reveal>
+          </motion.div>
         </div>
-        <Reveal delay={0.15} className="lg:col-span-5">
-          <figure className="overflow-hidden rounded-2xl border border-border bg-card">
-            <img src="/assets/works/studio-1.svg" alt="ARYX brand identity: letterhead and business cards" className="aspect-[4/3] w-full object-cover" />
-          </figure>
-        </Reveal>
+        <div className="relative -mx-6 h-[min(70vw,440px)] lg:col-span-5 lg:mx-0 lg:h-[680px]">
+          <Suspense fallback={<img src="/assets/logo/aryx-mark.svg" alt="" className="absolute inset-0 m-auto size-40 opacity-40" />}>
+            <Sculpture className="absolute inset-0 lg:-right-28 lg:-left-28" />
+          </Suspense>
+          <p className="pointer-events-none absolute right-6 bottom-2 text-xs text-muted-foreground lg:right-0">Move your cursor to turn it</p>
+        </div>
       </div>
-      <Reveal delay={0.22}>
-        <dl className="mt-20 grid grid-cols-1 border-t border-border sm:grid-cols-3">
-          {facts.map((f, i) => (
-            <div key={f.v} className={`py-6 sm:px-6 ${i ? "border-t border-border sm:border-t-0 sm:border-l" : "sm:pl-0"}`}>
-              <dt className="font-display text-4xl">{f.k}</dt>
-              <dd className="mt-1 text-sm text-muted-foreground">{f.v}</dd>
-            </div>
-          ))}
-        </dl>
-      </Reveal>
     </section>
   )
 }

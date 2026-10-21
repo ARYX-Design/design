@@ -1,25 +1,27 @@
 import { aboutTags } from "@/data/site"
+import { Iso } from "./Iso"
+import { TiltCard } from "./Tilt"
 import { Reveal, Section } from "./ui"
 
 export function About() {
   return (
     <Section id="about">
-      <div className="grid items-center gap-14 border-t border-border pt-6 lg:grid-cols-12">
+      <div className="grid items-center gap-14 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
-          <p className="mb-8 text-sm text-muted-foreground"><span className="mr-3">06</span>About</p>
-          <div className="grid aspect-square place-items-center rounded-2xl border border-border bg-stone">
-            <img src="/assets/logo/aryx-mark-mono-black.svg" alt="ARYX logo mark" className="size-2/5 opacity-90" />
-          </div>
+          <TiltCard className="shadow-depth rounded-[2rem] bg-gradient-to-b from-white to-[#e4e9f2]" max={10}>
+            <div className="lift grid aspect-square place-items-center">
+              <Iso k="agents" className="w-3/4 drop-shadow-[0_24px_24px_rgba(26,36,64,.2)]" />
+            </div>
+          </TiltCard>
         </Reveal>
         <Reveal delay={0.08} className="lg:col-span-7">
-          <h2 className="text-4xl leading-[1.05] sm:text-6xl">Design that does the heavy lifting <em className="text-accent">for your brand.</em></h2>
+          <h2 className="text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.98]">A small studio that sweats the details.</h2>
           <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted-foreground">
-            <p>ARYX is a small, independent studio obsessed with the details that make a brand feel premium: the weight of a logo, the rhythm of a layout, the split-second a page takes to load.</p>
-            <p>Working with one studio means faster decisions, a consistent vision, and a brand that actually feels like you, not stitched together from templates.</p>
+            <p>ARYX cares about what makes a brand feel premium: the weight of a logo, the rhythm of a layout, the split second a page takes to load.</p>
+            <p>Working with one studio means faster decisions, one consistent vision, and a brand that feels like you rather than a template.</p>
           </div>
-          <p className="mt-10 text-sm text-muted-foreground">Tools & disciplines</p>
-          <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-foreground/80">
-            {aboutTags.map((t, i) => <li key={t}>{t}{i < aboutTags.length - 1 && <span className="ml-5 text-border">/</span>}</li>)}
+          <ul className="mt-10 flex flex-wrap gap-2">
+            {aboutTags.map((t) => <li key={t} className="rounded-full bg-white px-4 py-2 text-sm shadow-depth">{t}</li>)}
           </ul>
         </Reveal>
       </div>

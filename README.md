@@ -24,7 +24,8 @@ npm run typecheck
 ## Make it yours
 - **Copy, prices, links:** edit `src/data/site.ts`. The €490 / €1,900 prices and the About text are sample values; only "from €19.99" comes from the brief.
 - **Photos:** save your own images as `assets/photos/photo-1.jpg` … `photo-4.jpg` (4:3 works best). They replace the bundled studio artwork (`assets/works/studio-1..4.svg`) in the Work grid automatically.
-- **Look:** light editorial style: paper background, Instrument Serif headings, Inter body, one deep-teal accent (`--accent` in `src/index.css`).
+- **Look:** porcelain background, navy ink, cobalt and apricot accents (`src/index.css`), Bricolage Grotesque + Instrument Sans.
+- **3D:** the hero sculpture is the ARYX mark rebuilt in three.js (`src/components/three/Sculpture.tsx`, React Three Fiber + drei). It loads lazily and pauses when off screen. Cards tilt in 3D (`src/components/site/Tilt.tsx`); service icons are isometric SVG (`src/components/site/Iso.tsx`).
 - **Videos:** the Watch section uses 3 videos listed in `videos` (`src/data/site.ts`) and copied by `scripts/prepare-public.mjs`.
 - **Colors:** brand tokens are CSS variables at the top of `src/index.css`.
 
