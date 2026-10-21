@@ -239,3 +239,47 @@ Before posting, glance at the sources listed under each video. Every fact below 
 **Pinned comment:** Tag someone who needs to see this 👇
 **Sources:** Avast research on deepfake Musk livestreams during a SpaceX Starship launch (2024, reported by Cointelegraph); Bitdefender on hijacked YouTube channels.
 #cryptoscam #deepfake #bitcoin #scamalert #crypto #ARYX #fyp
+
+## Money, investing & AI (true stories and math, no financial advice)
+
+### aryx-money-penny-9x16
+**On-screen hook:** $1,000,000 now, or 1 penny doubled daily for 30 days?
+**Caption:** $1M now, or a penny that doubles every day for 30 days? Day 10: $5.12. Day 20: $5,243. Day 30: $5,368,709. That's compounding: growth on top of growth, and most of it happens at the end (day 29 alone is $2.68M). Real investments don't double daily, but the same math works slowly over years. Not financial advice.
+**Pinned comment:** Be honest: which one would you have picked? 👇
+**Math:** $0.01 × 2^(day − 1). Day 30 = $5,368,709.12.
+#compoundinterest #moneytips #personalfinance #investing #moneyfacts #ARYX #fyp
+
+### aryx-money-buffett-9x16
+**On-screen hook:** Buffett bet $1,000,000 against hedge funds.
+**Caption:** In 2008 Warren Buffett bet $1M that a simple S&P 500 index fund would beat hand-picked hedge funds over 10 years. Protégé Partners took the bet and picked five funds of hedge funds. Result: the index fund grew ~7.1% a year, the hedge funds ~2.2%. Buffett's point: high fees eat returns. The prize went to Girls Inc. of Omaha. Not financial advice.
+**Pinned comment:** Index fund or picking stocks? 👇
+**Sources:** Business Insider and CNBC reporting on the 2008–2017 bet (7.1% vs 2.2% a year; WSJ cites 2.1% for the funds); Buffett's 2017 Berkshire shareholder letter.
+#warrenbuffett #indexfunds #investing #hedgefunds #personalfinance #ARYX #fyp
+
+### aryx-money-pizza-9x16
+**On-screen hook:** These pizzas cost 10,000 Bitcoin.
+**Caption:** May 22, 2010: Laszlo Hanyecz paid 10,000 bitcoin for two pizzas, worth about $41 at the time. At Bitcoin's 2021 peak, those coins were worth nearly $690 million. Today May 22 is Bitcoin Pizza Day. Would you have spent it? Not financial advice.
+**Pinned comment:** Would you have spent it? YES or NO 👇
+**Sources:** Decrypt and Gulf News on Bitcoin Pizza Day; the ~$690M figure uses Bitcoin's late-2021 peak (~$69K).
+#bitcoin #bitcoinpizzaday #crypto #btc #moneyfacts #ARYX #fyp
+
+### aryx-money-bestdays-9x16
+**On-screen hook:** Missing 10 days can cut your money in half.
+**Caption:** J.P. Morgan looked at $10,000 in the S&P 500 from 2005 to 2024. Stay invested the whole time: about $71,750. Miss only the 10 best days: about $32,871. The catch: in their data, many of the best days came within two weeks of the worst ones, so panic-selling can mean missing the rebound. Not financial advice.
+**Pinned comment:** Have you ever sold in a panic? 👇
+**Sources:** J.P. Morgan Asset Management research on missing the best days (2005–2024 figures as reported by NBC/CNBC). Past performance doesn't guarantee future results.
+#investing #stockmarket #longterminvesting #sp500 #personalfinance #ARYX #fyp
+
+### aryx-money-wayne-9x16
+**On-screen hook:** He sold 10% of Apple for $800.
+**Caption:** Ronald Wayne co-founded Apple in 1976 with Steve Jobs and Steve Wozniak. Less than two weeks later, he sold his 10% stake back for $800. Partners were personally liable, and he feared the young company's debts. By most estimates that stake would be worth tens of billions today. He says he has no regrets. Would you have sold?
+**Pinned comment:** Would you have sold? YES or NO 👇
+**Sources:** Fortune (2026), Ritholtz (2016), Yahoo Finance; he later took another $1,500 to give up future claims. Present-day value estimates range widely (~$75B to $360B+).
+#apple #stevejobs #moneyfacts #investing #startup #ARYX #fyp
+
+### aryx-money-nvidia-9x16
+**On-screen hook:** Started in a diner booth. First to hit $5 trillion.
+**Caption:** 1993: Jensen Huang and two co-founders start Nvidia at a Denny's. For years its chips were best known for making video games look better. Then AI arrived: AI needs thousands of calculations at once, exactly what GPUs do. On October 29, 2025, Nvidia became the first company worth $5 trillion. Bubble, or the future? Not financial advice.
+**Pinned comment:** Bubble or the future? 👇
+**Sources:** Entrepreneur, Statista and Forbes on the $5T milestone (Oct 29, 2025); Nvidia's own founding story (Denny's, San Jose, 1993).
+#nvidia #ai #stockmarket #investing #tech #ARYX #fyp
