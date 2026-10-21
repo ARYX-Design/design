@@ -1,5 +1,6 @@
 import { aboutTags } from "@/data/site"
 import { Iso } from "./Iso"
+import { Obj } from "./Obj"
 import { TiltCard } from "./Tilt"
 import { Reveal, Section } from "./ui"
 
@@ -10,7 +11,7 @@ export function About() {
         <Reveal className="lg:col-span-5">
           <TiltCard className="shadow-depth rounded-[2rem] bg-gradient-to-b from-white to-[#e4e9f2]" max={10}>
             <div className="lift grid aspect-square place-items-center">
-              <Iso k="agents" className="w-3/4 drop-shadow-[0_24px_24px_rgba(26,36,64,.2)]" />
+              <Obj kind="network" zoom={8} className="size-full" fallback={<Iso k="agents" className="w-3/4 drop-shadow-[0_24px_24px_rgba(26,36,64,.2)]" />} />
             </div>
           </TiltCard>
         </Reveal>

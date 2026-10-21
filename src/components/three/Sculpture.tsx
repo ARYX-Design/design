@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { ContactShadows, Environment, Float, Lightformer } from "@react-three/drei"
+import { Environment, Float, Lightformer } from "@react-three/drei"
 import * as THREE from "three"
 
 // The ARYX mark (48×48 SVG) rebuilt in 3D: three nodes, three edges and the centre ring.
@@ -19,7 +19,7 @@ function Tube({ a, b, r = 0.13 }: { a: THREE.Vector3; b: THREE.Vector3; r?: numb
   }, [a, b])
   return (
     <mesh position={pos} quaternion={quat} castShadow>
-      <capsuleGeometry args={[r, len, 12, 32]} />
+      <capsuleGeometry args={[r, len, 6, 20]} />
       <meshPhysicalMaterial color="#f3f6fc" metalness={0.75} roughness={0.22} clearcoat={1} clearcoatRoughness={0.12} envMapIntensity={1.8} />
     </mesh>
   )
@@ -28,7 +28,7 @@ function Tube({ a, b, r = 0.13 }: { a: THREE.Vector3; b: THREE.Vector3; r?: numb
 function Node({ at, r, color }: { at: THREE.Vector3; r: number; color: string }) {
   return (
     <mesh position={at} castShadow>
-      <sphereGeometry args={[r, 64, 64]} />
+      <sphereGeometry args={[r, 40, 40]} />
       <meshPhysicalMaterial color={color} roughness={0.18} clearcoat={1} clearcoatRoughness={0.08} sheen={0.4} />
     </mesh>
   )
@@ -55,7 +55,7 @@ function Satellites({ still }: { still: boolean }) {
       {orbits.map((o, i) => (
         <group key={i} rotation={o.tilt as [number, number, number]}>
           <mesh>
-            <torusGeometry args={[o.r, 0.006, 8, 160]} />
+            <torusGeometry args={[o.r, 0.006, 4, 96]} />
             <meshBasicMaterial color="#0b1220" transparent opacity={0.16} />
           </mesh>
           <mesh position={[Math.cos(o.phase) * o.r, Math.sin(o.phase) * o.r, 0]}>
@@ -88,8 +88,8 @@ function Mark({ still }: { still: boolean }) {
         <Node at={LEFT} r={0.46} color="#2e4bff" />
         <Node at={RIGHT} r={0.46} color="#2e4bff" />
         <mesh position={RING} castShadow>
-          <torusGeometry args={[0.43, 0.13, 32, 96]} />
-          <meshPhysicalMaterial color="#ffffff" transmission={1} thickness={0.6} roughness={0.05} ior={1.45} clearcoat={1} />
+          <torusGeometry args={[0.43, 0.13, 20, 64]} />
+          <meshPhysicalMaterial color="#ffffff" roughness={0.08} clearcoat={1} transparent opacity={0.72} envMapIntensity={2} />
         </mesh>
         <Satellites still={still} />
       </Float>
@@ -110,12 +110,12 @@ export default function Sculpture({ className }: { className?: string }) {
   }, [])
   return (
     <div ref={host} className={className} aria-hidden>
-      <Canvas frameloop={visible ? "always" : "never"} dpr={[1, 1.75]} camera={{ position: [0, 0, 9], fov: 38 }} gl={{ antialias: true, alpha: true }}>
+      <div className="pointer-events-none absolute bottom-[6%] left-1/2 h-10 w-[55%] -translate-x-1/2 rounded-[50%] bg-[#1a2440]/25 blur-2xl" />
+      <Canvas frameloop={visible ? "always" : "never"} dpr={[1, 1.5]} camera={{ position: [0, 0, 9], fov: 38 }} gl={{ antialias: true, alpha: true }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[4, 6, 5]} intensity={1.6} castShadow />
         <Mark still={still} />
-        <ContactShadows position={[0, -3.4, 0]} opacity={0.32} scale={12} blur={2.6} far={5} color="#1a2440" />
-        <Environment resolution={256}>
+        <Environment resolution={128}>
           <Lightformer form="rect" intensity={4} position={[0, 4, -6]} scale={[14, 6, 1]} />
           <Lightformer form="rect" intensity={2.5} position={[0, 0, 8]} scale={[14, 8, 1]} />
           <Lightformer form="rect" intensity={2} position={[-6, 1, 2]} rotation-y={Math.PI / 2} scale={[8, 3, 1]} />

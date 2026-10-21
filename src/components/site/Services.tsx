@@ -1,6 +1,7 @@
 import { services } from "@/data/site"
 import { cn } from "@/lib/utils"
 import { Iso } from "./Iso"
+import { Obj } from "./Obj"
 import { TiltCard } from "./Tilt"
 import { Reveal, Section, SectionHead } from "./ui"
 
@@ -18,7 +19,7 @@ export function Services() {
               <TiltCard className="shadow-depth rounded-[1.6rem] bg-card" max={wide ? 5 : 8}>
                 <div className={cn("flex h-full flex-col gap-6 p-7", wide && "lg:flex-row lg:items-center lg:gap-10")}>
                   <div className={cn("lift grid h-40 place-items-center rounded-2xl bg-gradient-to-b from-[#f2f4f9] to-[#e4e9f2]", wide && "lg:h-52 lg:w-[42%] lg:flex-none")}>
-                    <Iso k={s.key} className="h-32 w-auto drop-shadow-[0_14px_14px_rgba(26,36,64,.18)] transition-transform duration-500 group-hover:-translate-y-2 lg:h-36" />
+                    <Obj kind={s.key} className={cn("h-40 w-full", wide && "lg:h-52")} fallback={<Iso k={s.key} className="h-32 w-auto drop-shadow-[0_14px_14px_rgba(26,36,64,.18)] lg:h-36" />} />
                   </div>
                   <div className="lift">
                     <h3 className="text-2xl">{s.name}</h3>

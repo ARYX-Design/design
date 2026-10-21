@@ -1,4 +1,5 @@
 import { About } from "@/components/site/About"
+import { ObjPort } from "@/components/site/Obj"
 import { Cta } from "@/components/site/Cta"
 import { Footer } from "@/components/site/Footer"
 import { Hero } from "@/components/site/Hero"
@@ -24,6 +25,7 @@ export default function App() {
         <Cta />
       </main>
       <Footer />
+      <ObjPort />
     </>
   )
 }

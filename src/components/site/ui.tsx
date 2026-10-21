@@ -1,13 +1,17 @@
-import type { ReactNode } from "react"
-import { BlurFade } from "@/components/magicui/blur-fade"
+import { useEffect, useRef, type ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
+/** Fades content up once it scrolls into view. Pure CSS transition, so it never waits on a busy main thread. */
 export function Reveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  return (
-    <BlurFade inView direction="up" offset={18} blur="0px" duration={0.7} delay={delay} className={className}>
-      {children}
-    </BlurFade>
-  )
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add("in"); io.disconnect() } }, { rootMargin: "0px 0px -40px 0px" })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+  return <div ref={ref} className={cn("reveal", className)} style={{ transitionDelay: `${delay}s` }}>{children}</div>
 }
 
 export function Section({ id, className, children }: { id?: string; className?: string; children: ReactNode }) {

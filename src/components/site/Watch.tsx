@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { videos } from "@/data/site"
+import { Obj } from "./Obj"
 import { ScrollTilt } from "./Tilt"
 
 type V = (typeof videos)[number]
@@ -50,7 +51,10 @@ export function Watch() {
         <div aria-hidden className="pointer-events-none absolute -top-40 right-0 size-[520px] rounded-full bg-primary/30 blur-[140px]" />
         <div className="relative mb-14 grid items-end gap-6 lg:grid-cols-12">
           <h2 className="text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.98] lg:col-span-7">Short films about what we build.</h2>
-          <p className="max-w-md text-lg leading-relaxed text-white/60 lg:col-span-5 lg:justify-self-end">Under a minute each, with voiceover. Press play for sound.</p>
+          <p className="max-w-md text-lg leading-relaxed text-white/60 lg:col-span-7 lg:row-start-2">Under a minute each, with voiceover. Press play for sound.</p>
+          <div aria-hidden className="hidden h-64 lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:block">
+            <Obj kind="knot" zoom={6.4} className="size-full" />
+          </div>
         </div>
         <div className="relative grid gap-10 md:grid-cols-2">
           {list.map((v) => <ScrollTilt key={v.id}><VideoCard v={v} /></ScrollTilt>)}

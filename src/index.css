@@ -330,6 +330,14 @@
   }
 }
 
+@keyframes hero-rise { from { transform: translateY(110%) rotateX(-55deg); } to { transform: none; } }
+@keyframes hero-fade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.hero-rise { animation: hero-rise 1.1s cubic-bezier(.16,1,.3,1) both; }
+.hero-fade { animation: hero-fade .8s ease both; }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .8s cubic-bezier(.16,1,.3,1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } .hero-rise, .hero-fade { animation: none; } }
+
 @keyframes float-y { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-14px) rotate(-6deg); } }
 
 @layer base {

@@ -1,7 +1,10 @@
 import { MAILTO, pricing } from "@/data/site"
 import { cn } from "@/lib/utils"
+import { Obj } from "./Obj"
 import { TiltCard } from "./Tilt"
 import { Button, Reveal, Section, SectionHead } from "./ui"
+
+const kinds = ["cube", "logo", "websites", "automation"] as const
 
 const fmt = (p: (typeof pricing)[number]) =>
   p.price == null ? "Let's talk" : `€${p.price.toLocaleString("en-US", { minimumFractionDigits: p.decimals, maximumFractionDigits: p.decimals })}`
@@ -17,6 +20,7 @@ export function Pricing() {
           <Reveal key={p.name} delay={i * 0.06} className="h-full">
             <TiltCard className={cn("rounded-[1.6rem]", p.featured ? "bg-ink text-white shadow-[0_40px_80px_-30px_rgba(11,18,32,.7)]" : "shadow-depth bg-card")} max={7}>
               <div className="flex h-full flex-col p-7">
+                <Obj kind={kinds[i]} zoom={5.4} className="lift -mt-3 mb-2 h-28 w-full" />
                 {p.featured && <span className="lift mb-3 self-start rounded-full bg-primary px-2.5 py-1 text-xs font-semibold">Recommended</span>}
                 <h3 className="lift text-2xl">{p.name}</h3>
                 <p className={cn("lift mt-1 text-sm", p.featured ? "text-white/60" : "text-muted-foreground")}>{p.desc}</p>
