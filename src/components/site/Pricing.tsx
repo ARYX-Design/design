@@ -18,7 +18,7 @@ export function Pricing() {
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {pricing.map((p, i) => (
           <Reveal key={p.name} delay={i * 0.06} className="h-full">
-            <TiltCard className={cn("rounded-[1.6rem]", p.featured ? "bg-ink text-white shadow-[0_40px_80px_-30px_rgba(11,18,32,.7)]" : "shadow-depth bg-card")} max={7}>
+            <TiltCard className={cn("rounded-[1.6rem]", p.featured ? "beam bg-ink text-white shadow-[0_40px_80px_-30px_rgba(46,75,255,.6)]" : "shadow-depth bg-card")} max={7}>
               <div className="flex h-full flex-col p-7">
                 <Obj kind={kinds[i]} zoom={5.4} className="lift -mt-3 mb-2 h-28 w-full" />
                 {p.featured && <span className="lift mb-3 self-start rounded-full bg-primary px-2.5 py-1 text-xs font-semibold">Recommended</span>}

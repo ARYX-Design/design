@@ -32,6 +32,7 @@ export function Footer() {
             </div>
           </div>
         </div>
+        <p aria-hidden className="mt-16 -mb-4 select-none bg-clip-text text-center font-display text-[25vw] leading-[0.78] font-extrabold tracking-[-0.06em] text-transparent lg:text-[17rem]" style={{ backgroundImage: "linear-gradient(100deg,#0b1220 30%,#2e4bff 45%,#ff8a4c 55%,#0b1220 70%)", backgroundSize: "300% 100%", animation: "shimmer-x 7s ease-in-out infinite alternate" }}>ARYX</p>
         <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-sm text-muted-foreground">
           <p>© 2026 ARYX. All rights reserved.</p>
           <a href="/classic.html" className="link-underline">Previous site</a>

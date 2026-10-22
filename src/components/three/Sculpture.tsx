@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Environment, Float, Lightformer } from "@react-three/drei"
 import * as THREE from "three"
+import { scrollState } from "@/components/fx/scroll"
 
 // The ARYX mark (48×48 SVG) rebuilt in 3D: three nodes, three edges and the centre ring.
 const S = 0.1
@@ -68,36 +69,64 @@ function Satellites({ still }: { still: boolean }) {
   )
 }
 
+/** A piece of the mark that drifts outward along `dir` and tumbles as the hero scrolls away. */
+function Part({ dir, spin = 1, children, still }: { dir: THREE.Vector3; spin?: number; children: React.ReactNode; still: boolean }) {
+  const ref = useRef<THREE.Group>(null)
+  useFrame((_, dt) => {
+    if (!ref.current) return
+    const p = still ? 0 : scrollState.heroP
+    const e = p * p * (3 - 2 * p)
+    const target = dir.clone().multiplyScalar(e * 2.6)
+    ref.current.position.lerp(target, 1 - Math.exp(-8 * dt))
+    ref.current.rotation.z = THREE.MathUtils.damp(ref.current.rotation.z, e * spin * 1.2, 6, dt)
+  })
+  return <group ref={ref}>{children}</group>
+}
+
+const dirOf = (...pts: THREE.Vector3[]) => pts.reduce((a, b) => a.clone().add(b), new THREE.Vector3()).multiplyScalar(1 / pts.length).add(new THREE.Vector3(0, 0, 0.6)).normalize()
+
 function Mark({ still }: { still: boolean }) {
   const ref = useRef<THREE.Group>(null)
-  useFrame(({ pointer, clock }, dt) => {
+  useFrame(({ pointer, clock, viewport }, dt) => {
     if (!ref.current) return
+    // On wide screens the canvas spans the whole hero, so park the mark in the right-hand column.
+    const wide = window.innerWidth >= 1024
+    const baseX = wide ? viewport.width * 0.2 : 0
     const t = clock.getElapsedTime()
-    const ty = still ? -0.35 : pointer.x * 0.55 + Math.sin(t * 0.35) * 0.35 - 0.3
-    const tx = still ? 0.12 : -pointer.y * 0.3 + 0.1
+    const p = still ? 0 : scrollState.heroP
+    const intro = still ? 1 : Math.min(1, Math.max(0, (t - 0.2) / 1.4))
+    const ease = 1 - Math.pow(1 - intro, 3)
+    const ty = still ? -0.35 : pointer.x * 0.55 + Math.sin(t * 0.35) * 0.35 - 0.3 + p * Math.PI * 1.2 + (1 - ease) * -2.4
+    const tx = still ? 0.12 : -pointer.y * 0.3 + 0.1 + p * 0.5
     ref.current.rotation.y = THREE.MathUtils.damp(ref.current.rotation.y, ty, 3, dt)
     ref.current.rotation.x = THREE.MathUtils.damp(ref.current.rotation.x, tx, 3, dt)
+    const sc = (0.55 + 0.45 * ease) * (1 + p * 0.35) * (wide ? 0.9 : 1)
+    ref.current.scale.setScalar(THREE.MathUtils.damp(ref.current.scale.x, sc, 6, dt))
+    ref.current.position.y = THREE.MathUtils.damp(ref.current.position.y, -p * 1.4, 6, dt)
+    ref.current.position.x = THREE.MathUtils.damp(ref.current.position.x, baseX - p * (wide ? viewport.width * 0.12 : 0), 6, dt)
   })
   return (
-    <group ref={ref}>
+    <group ref={ref} scale={0.55}>
       <Float speed={still ? 0 : 1.4} rotationIntensity={0.25} floatIntensity={0.6}>
-        <Tube a={TOP} b={LEFT} />
-        <Tube a={TOP} b={RIGHT} />
-        <Tube a={BAR_L} b={BAR_R} r={0.1} />
-        <Node at={TOP} r={0.5} color="#ff8a4c" />
-        <Node at={LEFT} r={0.46} color="#2e4bff" />
-        <Node at={RIGHT} r={0.46} color="#2e4bff" />
-        <mesh position={RING} castShadow>
-          <torusGeometry args={[0.43, 0.13, 20, 64]} />
-          <meshPhysicalMaterial color="#ffffff" roughness={0.08} clearcoat={1} transparent opacity={0.72} envMapIntensity={2} />
-        </mesh>
+        <Part still={still} dir={dirOf(TOP, LEFT)} spin={-1}><Tube a={TOP} b={LEFT} /></Part>
+        <Part still={still} dir={dirOf(TOP, RIGHT)} spin={1}><Tube a={TOP} b={RIGHT} /></Part>
+        <Part still={still} dir={dirOf(BAR_L, BAR_R).setY(-0.6).normalize()} spin={0.6}><Tube a={BAR_L} b={BAR_R} r={0.1} /></Part>
+        <Part still={still} dir={dirOf(TOP)}><Node at={TOP} r={0.5} color="#ff8a4c" /></Part>
+        <Part still={still} dir={dirOf(LEFT)}><Node at={LEFT} r={0.46} color="#2e4bff" /></Part>
+        <Part still={still} dir={dirOf(RIGHT)}><Node at={RIGHT} r={0.46} color="#2e4bff" /></Part>
+        <Part still={still} dir={new THREE.Vector3(0, 0.2, 1).normalize()} spin={2}>
+          <mesh position={RING} castShadow>
+            <torusGeometry args={[0.43, 0.13, 20, 64]} />
+            <meshPhysicalMaterial color="#ffffff" roughness={0.08} clearcoat={1} transparent opacity={0.72} envMapIntensity={2} />
+          </mesh>
+        </Part>
         <Satellites still={still} />
       </Float>
     </group>
   )
 }
 
-export default function Sculpture({ className }: { className?: string }) {
+export default function Sculpture({ className, style }: { className?: string; style?: React.CSSProperties }) {
   const host = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(true)
   const still = useMemo(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches, [])
@@ -109,7 +138,7 @@ export default function Sculpture({ className }: { className?: string }) {
     return () => io.disconnect()
   }, [])
   return (
-    <div ref={host} className={className} aria-hidden>
+    <div ref={host} className={className} style={style} aria-hidden>
       <div className="pointer-events-none absolute bottom-[6%] left-1/2 h-10 w-[55%] -translate-x-1/2 rounded-[50%] bg-[#1a2440]/25 blur-2xl" />
       <Canvas frameloop={visible ? "always" : "never"} dpr={[1, 1.5]} camera={{ position: [0, 0, 9], fov: 38 }} gl={{ antialias: true, alpha: true }}>
         <ambientLight intensity={0.6} />
